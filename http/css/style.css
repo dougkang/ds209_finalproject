@@ -1,0 +1,39 @@
+#container {
+  background-color: white;
+  width: 1000px;
+  padding: 25px 25px 25px 25px;
+  height: 100%;
+  margin: 0 auto;
+  border-left: solid 1px #CCC;
+  border-right: solid 1px #CCC;
+  overflow: scroll;
+}
+
+.left, .right {
+  overflow: scroll;
+}
+
+.bar {
+  fill: gray;
+  stroke-width: 0;
+}
+
+.bar:hover {
+  fill: #fc8d59;
+  stroke: #fc8d59;
+}
+
+.axis {
+  font-size: 8pt;
+  font-family: sans-serif;
+}
+
+.axis path {
+  fill: none;
+  stroke: #111;
+}
+
+.y.axis .tick line {
+  stroke: #111;
+  opacity: 0.2;
+}

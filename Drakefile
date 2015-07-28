@@ -1,0 +1,58 @@
+%all <- out/indivs.csv, out/cands.csv, out/cmtes.csv, out/pacs.csv, out/pac_other.csv, out/categories.csv
+  echo "All CSVs created!"
+
+out/categories.csv <- raw/CRP_categories.txt
+  mkdir out
+  cat raw/CRP_Categories.txt | tail -n+9 | sed 's/	/","/g' | sed 's/^/"/' | sed 's/$/"/' > $OUTPUT
+
+out/indivs.csv <- headers/indivs.headers.csv
+  mkdir out
+  echo "Generating $OUTPUT"
+  cat $INPUT > $OUTPUT
+  find . -path './raw/*/indivs*.txt' | grep -v drake | xargs cat \
+  | LANG=C sed 's/"//g' \
+  | LANG=C sed 's/|/"/g' >> $OUTPUT
+
+out/cands.csv <- headers/cands.headers.csv
+  mkdir out
+  echo "Generating $OUTPUT"
+  cat $INPUT > $OUTPUT
+  find . -path './raw/*/cands*.txt' | grep -v drake | xargs cat \
+  | LANG=C sed 's/"//g' \
+  | LANG=C sed 's/|/"/g' >> $OUTPUT
+
+out/cmtes.csv <- headers/cmtes.headers.csv
+  mkdir out
+  echo "Generating $OUTPUT"
+  cat $INPUT > $OUTPUT
+  find . -path './raw/*/cmtes*.txt' | grep -v drake | xargs cat \
+  | LANG=C sed 's/"//g' \
+  | LANG=C sed 's/|/"/g' >> $OUTPUT
+
+out/pacs.csv <- headers/pacs.headers.csv
+  mkdir out
+  echo "Generating $OUTPUT"
+  cat $INPUT > $OUTPUT
+  find . -path './raw/*/pacs*.txt' | grep -v drake | xargs cat \
+  | LANG=C sed 's/"//g' \
+  | LANG=C sed 's/|/"/g' >> $OUTPUT
+
+out/pac_other.csv <- headers/pac_other.headers.csv
+  mkdir out
+  echo "Generating $OUTPUT"
+  cat $INPUT > $OUTPUT
+  find . -path './raw/*/pac_other*.txt' | grep -v drake | xargs cat \
+  | LANG=C sed 's/"//g' \
+  | LANG=C sed 's/|/"/g' >> $OUTPUT
+
+out/ic_org.csv <- out/indivs.sample.csv, out/cands.csv, out/cmtes.csv
+  python scripts/merge_contributions.py 
+
+%run <- out/ic_org.csv
+  mkdir -p http/data 
+  cp $INPUT http/data/
+  cd http
+  python -m SimpleHTTPServer
+
+%clean <-
+  rm -r out
