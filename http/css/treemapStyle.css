@@ -1,0 +1,55 @@
+text {
+  pointer-events: none;
+}
+
+.grandparent text {
+  font-weight: bold;
+}
+
+rect {
+/*  fill: none; */
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+rect.parent,
+.grandparent rect {
+  stroke-width: 2px;
+}
+
+.grandparent:hover rect {
+  fill: 'darkgrey';
+}
+
+.children rect.parent,
+.grandparent rect {
+  cursor: pointer;
+}
+
+.children rect.child {
+  opacity: 0;
+}
+
+.children rect.parent {
+}
+
+.children:hover rect.child {
+  opacity: 1;
+  stroke-width: 1px;
+}
+
+.children:hover rect.parent {
+  opacity: 0;
+}
+
+.legend rect {
+  stroke-width: 0px;
+}
+
+.legend text {
+  text-anchor: middle;
+  pointer-events: auto;
+  font-size: 15px;
+  font-family: sans-serif;
+  fill: black;
+}

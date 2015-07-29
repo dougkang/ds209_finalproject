@@ -3,6 +3,7 @@
     <title>Change in Contributions per Sector</title>
     <link rel="stylesheet" style="text/css" href="css/d3.slider.css" />
     <link rel="stylesheet" style="text/css" href="css/style.css" />
+    <link rel="stylesheet" style="text/css" href="css/treemapStyle.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -10,11 +11,24 @@
   </head>
   <body>
     <div id="container">
+      
+      
+      
+      <div id="contribution-treemap" class="row-fluid">
+        <p id="chart"></p>
+        <h3 style="font-weight: bold">Percentage of donor's total poltical contributions</h3>
+        <div id="legend"></div>
+      </div> <!-- end of div#contribution-treemap -->
+
       <h1>Change in Contributions per Sector</h1>
       <div id="viz" class="row-fluid"></div>
+
+    </div> <!-- end of div#container -->
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
       <script src="/js/d3.slider.js"></script>
       <script src="/js/viz.js"></script>
-    </div>
+      <script src="/js/contributionTreemap.js"></script>
+    
   </body>
 </html>
