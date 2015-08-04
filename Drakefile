@@ -13,6 +13,12 @@ out/indivs.csv <- headers/indivs.headers.csv
   | LANG=C sed 's/"//g' \
   | LANG=C sed 's/|/"/g' >> $OUTPUT
 
+out/indivs.sample.csv <- out/indivs.csv
+  mkdir out
+  echo "Generating $OUTPUT"
+  cat headers/indivs.headers.csv > $OUTPUT
+  cat $INPUT | grep -v "^Cycle" | gshuf | head -n10000 >> $OUTPUT
+
 out/cands.csv <- headers/cands.headers.csv
   mkdir out
   echo "Generating $OUTPUT"

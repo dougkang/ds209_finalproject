@@ -10,15 +10,29 @@
 }
 
 .left, .right {
+  height: 800;
   overflow: scroll;
 }
 
-.bar {
-  fill: gray;
+.area {
   stroke-width: 0;
 }
 
-.bar:hover {
+.bar {
+  stroke-width: 0;
+}
+
+.bar .highlighted {
+  stroke: #111;
+  opacity: 0.8;
+}
+
+.unhighlighted {
+  stroke: #111;
+  opacity: 0.2;
+}
+
+.highlighted {
   fill: #fc8d59;
   stroke: #fc8d59;
 }
@@ -37,3 +51,13 @@
   stroke: #111;
   opacity: 0.2;
 }
+
+.top .x.axis .tick line {
+  stroke: #111;
+  opacity: 0.2;
+}
+
+.hotspot {
+  opacity: 0.2;
+}
+

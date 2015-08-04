@@ -19,6 +19,25 @@ p["Type"] = "Cmte"
 ent = pd.concat([c, p]).drop_duplicates(["EntityId"])
 
 out = ic.merge(ent, left_on = [ 'RecipID' ], right_on = [ 'EntityId' ], how = 'inner')
-out = out.loc[:, [ "Cycle_x", "Orgname", "RealCode", "Amount", "EntityId", "Name", "Party", "PrimCode", "RecipCode", "Type" ]]
-out.columns = [ "Cycle", "Orgname", "RealCode", "Amount", "EntityId", "Name", "Party", "PrimCode", "RecipCode", "Type" ]
+out = out.loc[:, [ "Cycle_x", "RealCode", "Amount", "Party", "Type" ]]
+out.columns = [ "Cycle", "RealCode", "Amount", "Party", "Type" ]
+out = out.groupby([ "Cycle", "RealCode", "Party", "Type" ]).agg(sum).reset_index()
+
+# Set empty values because its easier to deal with them here than in d3
+realcodes = list(set(out["RealCode"]))
+cycles = list(set(out["Cycle"]))
+parties = list(set(out["Party"]))
+types = list(set(out["Type"]))
+
+to_add = []
+for rc in realcodes:
+  for c in cycles:
+    for p in parties:
+      for t in types:
+        if not ((out["RealCode"] == rc) & (out["Cycle"] == c) & \
+                   (out["Party"] == p) & (out["Type"] == t)).any():
+          to_add.append({ "RealCode": rc, "Cycle": c, "Party": p, "Type": t, "Amount": 0.0 })
+
+out = pd.concat([out, pd.DataFrame(to_add)])
+out = out.sort("Cycle")
 out.to_csv("out/ic_org.csv")
