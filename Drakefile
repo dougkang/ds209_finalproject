@@ -54,9 +54,9 @@ out/pac_other.csv <- headers/pac_other.headers.csv
 out/ic_org.csv <- out/indivs.sample.csv, out/cands.csv, out/cmtes.csv
   python scripts/merge_contributions.py 
 
-%run <- out/ic_org.csv
+%run <- out/ic_org.csv, out/categories.csv
   mkdir -p http/data 
-  cp $INPUT http/data/
+  cp $INPUT0 $INPUT1 http/data/
   cd http
   python -m SimpleHTTPServer
 

@@ -15,26 +15,26 @@
 }
 
 .area {
-  stroke-width: 0;
+  stroke-width: 0px;
+  opacity: 0.8;
 }
 
 .bar {
   stroke-width: 0;
-}
-
-.bar .highlighted {
-  stroke: #111;
   opacity: 0.8;
 }
 
-.unhighlighted {
-  stroke: #111;
+.selected:hover {
   opacity: 0.2;
 }
 
 .highlighted {
-  fill: #fc8d59;
-  stroke: #fc8d59;
+  opacity: 1.0;
+}
+
+.unselected {
+  fill: #111;
+  opacity: 0.5;
 }
 
 .axis {
@@ -58,6 +58,10 @@
 }
 
 .hotspot {
+  opacity: 0.0;
+}
+
+.hotspot:hover {
   opacity: 0.2;
 }
 
