@@ -28,7 +28,13 @@ var democratTreemap = d3.layout.treemap()
     .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
     .round(false);
 
-var svg = d3.select("#democrat-chart").append("svg")
+var republicanTreemap = d3.layout.treemap()
+    .children(function(d, depth) { return depth ? null : d._children; })
+    .sort(function(a, b) { return a.value - b.value; })
+    .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
+    .round(false);
+
+var svgDemocrat = d3.select("#democrat-chart").append("svg")
     .attr("width", (width + margin.left + margin.right) / 2)
     .attr("height", height + margin.bottom + margin.top)
     .style("margin-left", -margin.left + "px")
@@ -37,7 +43,7 @@ var svg = d3.select("#democrat-chart").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .style("shape-rendering", "crispEdges");
 
-var democratGrandparent = svg.append("g")
+var democratGrandparent = svgDemocrat.append("g")
     .attr("class", "Grandparent");
 
 democratGrandparent.append("rect")
@@ -50,8 +56,30 @@ democratGrandparent.append("text")
     .attr("y", 6 - margin.top)
     .attr("dy", ".75em");
 
-var legend = d3.select("#democrat-legend").append("svg")
-  .attr("width", (width + margin.left + margin.right) / 2)
+var svgRepublican = d3.select("#republican-chart").append("svg")
+    .attr("width", (width + margin.left + margin.right) / 2)
+    .attr("height", height + margin.bottom + margin.top)
+    .style("margin-left", -margin.left + "px")
+    .style("margin.right", -margin.right + "px")
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .style("shape-rendering", "crispEdges");
+
+var republicanGrandparent = svgRepublican.append("g")
+    .attr("class", "Grandparent");
+
+republicanGrandparent.append("rect")
+    .attr("y", -margin.top)
+    .attr("width", width / 2)
+    .attr("height", margin.top);
+
+republicanGrandparent.append("text")
+    .attr("x", 6)
+    .attr("y", 6 - margin.top)
+    .attr("dy", ".75em");
+
+var partyLegend = d3.select("#legend").append("svg")
+  .attr("width", width + margin.left + margin.right)
   .attr("height", 30)
   .attr('class', 'legend')
   .selectAll("g")
@@ -109,7 +137,7 @@ function colorIncrements(d){
 }
 
 
-legend.append("rect")
+partyLegend.append("rect")
     .attr("x", function(d){return margin.left + d * 40})
     .attr("y", 0)
     .attr("fill", function(d) {return color(colorIncrements(d))})
@@ -117,7 +145,7 @@ legend.append("rect")
     .attr('height', '40px')
 
 
-legend.append("text")
+partyLegend.append("text")
         .text(function(d){return formatNumber(colorIncrements(d))})
         .attr('y', 20)
         .attr('x', function(d){return margin.left + d * 40 + 20});
@@ -132,12 +160,12 @@ d3.json("./data/democrat-treemap.json", function(root) {
   initialize(root);
   accumulate(root);
   layout(root);
-  display(root);
+  displayDemocrat(root);
 
-  function display(d) {
+  function displayDemocrat(d) {
     democratGrandparent
         .datum(d.parent)
-        .on("click", transition)
+        .on("click", transitionDemocrat)
       .select("text")
         .text(name(d))
 
@@ -147,7 +175,7 @@ d3.json("./data/democrat-treemap.json", function(root) {
       .select("rect")
       .attr("fill", function(){console.log(color(d.rate)); return color(d['rate'])})
 
-    var g1 = svg.insert("g", ".democratGrandparent")
+    var g1 = svgDemocrat.insert("g", ".democratGrandparent")
         .datum(d)
         .attr("class", "depth");
 
@@ -157,7 +185,7 @@ d3.json("./data/democrat-treemap.json", function(root) {
 
     g.filter(function(d) { return d._children; })
         .classed("children", true)
-        .on("click", transition);
+        .on("click", transitionDemocrat);
 
     g.selectAll(".child")
         .data(function(d) { return d._children || [d]; })
@@ -176,11 +204,11 @@ d3.json("./data/democrat-treemap.json", function(root) {
         .text(function(d) { return d.name; })
         .call(text);
 
-    function transition(d) {
+    function transitionDemocrat(d) {
       if (transitioning || !d) return;
       transitioning = true;
 
-      var g2 = display(d),
+      var g2 = displayDemocrat(d),
           t1 = g1.transition().duration(750),
           t2 = g2.transition().duration(750);
 
@@ -189,10 +217,10 @@ d3.json("./data/democrat-treemap.json", function(root) {
       y.domain([d.y, d.y + d.dy]);
 
       // Enable anti-aliasing during the transition.
-      svg.style("shape-rendering", null);
+      svgDemocrat.style("shape-rendering", null);
 
       // Draw child nodes on top of parent nodes.
-      svg.selectAll(".depth").sort(function(a, b) { return a.depth - b.depth; });
+      svgDemocrat.selectAll(".depth").sort(function(a, b) { return a.depth - b.depth; });
 
       // Fade-in entering text.
       g2.selectAll("text").style("fill-opacity", 0);
@@ -205,7 +233,7 @@ d3.json("./data/democrat-treemap.json", function(root) {
 
       // Remove the old node when the transition is finished.
       t1.remove().each("end", function() {
-        svg.style("shape-rendering", "crispEdges");
+        svgDemocrat.style("shape-rendering", "crispEdges");
         transitioning = false;
       });
     }
@@ -233,7 +261,112 @@ d3.json("./data/democrat-treemap.json", function(root) {
         : d.name;
   }
 
+});
 
+d3.json("./data/republican-treemap.json", function(root) {
+  console.log(root)
+  initialize(root);
+  accumulate(root);
+  layout(root);
+  displayRepublican(root);
 
+  function displayRepublican(d) {
+    republicanGrandparent
+        .datum(d.parent)
+        .on("click", transitionRepublican)
+      .select("text")
+        .text(name(d))
+
+    // color header based on republicanGrandparent's rate
+    republicanGrandparent
+      .datum(d.parent)
+      .select("rect")
+      .attr("fill", function(){console.log(color(d.rate)); return color(d['rate'])})
+
+    var g1 = svgRepublican.insert("g", ".republicanGrandparent")
+        .datum(d)
+        .attr("class", "depth");
+
+    var g = g1.selectAll("g")
+        .data(d._children)
+      .enter().append("g");
+
+    g.filter(function(d) { return d._children; })
+        .classed("children", true)
+        .on("click", transitionRepublican);
+
+    g.selectAll(".child")
+        .data(function(d) { return d._children || [d]; })
+      .enter().append("rect")
+        .attr("class", "child")
+        .call(rect);
+
+    g.append("rect")
+        .attr("class", "parent")
+        .call(rect)
+      .append("title")
+        .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Number of Donations: ' + d.value + ', percent change: ' + formatNumber(d.rate); });
+
+    g.append("text")
+        .attr("dy", ".75em")
+        .text(function(d) { return d.name; })
+        .call(text);
+
+    function transitionRepublican(d) {
+      if (transitioning || !d) return;
+      transitioning = true;
+
+      var g2 = displayRepublican(d),
+          t1 = g1.transition().duration(750),
+          t2 = g2.transition().duration(750);
+
+      // Update the domain only after entering new elements.
+      x.domain([d.x, d.x + d.dx]);
+      y.domain([d.y, d.y + d.dy]);
+
+      // Enable anti-aliasing during the transition.
+      svgRepublican.style("shape-rendering", null);
+
+      // Draw child nodes on top of parent nodes.
+      svgRepublican.selectAll(".depth").sort(function(a, b) { return a.depth - b.depth; });
+
+      // Fade-in entering text.
+      g2.selectAll("text").style("fill-opacity", 0);
+
+      // Transition to the new view.
+      t1.selectAll("text").call(text).style("fill-opacity", 0);
+      t2.selectAll("text").call(text).style("fill-opacity", 1);
+      t1.selectAll("rect").call(rect);
+      t2.selectAll("rect").call(rect);
+
+      // Remove the old node when the transition is finished.
+      t1.remove().each("end", function() {
+        svgRepublican.style("shape-rendering", "crispEdges");
+        transitioning = false;
+      });
+    }
+
+    return g;
+  }
+
+  function text(text) {
+    text.attr("x", function(d) { return x(d.x) + 6; })
+        .attr("y", function(d) { return y(d.y) + 6; })
+        .attr("fill", function (d) {return getContrast50(color(parseFloat(d.rate)))});
+  }
+
+  function rect(rect) {
+    rect.attr("x", function(d) { return x(d.x); })
+        .attr("y", function(d) { return y(d.y); })
+        .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
+        .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
+        .attr("fill", function(d){return color(parseFloat(d.rate));});
+  }
+
+  function name(d) {
+    return d.parent
+        ? name(d.parent) + "." + d.name
+        : d.name;
+  }
 
 });

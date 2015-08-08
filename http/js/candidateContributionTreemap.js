@@ -22,13 +22,13 @@ var color = d3.scale.linear()
 
 // introduce color scale here
 
-var treemap = d3.layout.treemap()
+var candidateTreemap = d3.layout.treemap()
     .children(function(d, depth) { return depth ? null : d._children; })
     .sort(function(a, b) { return a.value - b.value; })
     .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
     .round(false);
 
-var svg = d3.select("#candidate-chart").append("svg")
+var svgCandidate = d3.select("#candidate-chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.bottom + margin.top)
     .style("margin-left", -margin.left + "px")
@@ -37,20 +37,20 @@ var svg = d3.select("#candidate-chart").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .style("shape-rendering", "crispEdges");
 
-var grandparent = svg.append("g")
-    .attr("class", "grandparent");
+var candidateGrandparent = svgCandidate.append("g")
+    .attr("class", "candidateGrandparent");
 
-grandparent.append("rect")
+candidateGrandparent.append("rect")
     .attr("y", -margin.top)
     .attr("width", width)
     .attr("height", margin.top);
 
-grandparent.append("text")
+candidateGrandparent.append("text")
     .attr("x", 6)
     .attr("y", 6 - margin.top)
     .attr("dy", ".75em");
 
-var legend = d3.select("#candidate-legend").append("svg")
+var candidateLegend = d3.select("#candidate-legend").append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", 30)
   .attr('class', 'legend')
@@ -91,7 +91,7 @@ function initialize(root) {
   function layout(d) {
     if (d._children) {
       // treemap nodes comes from the treemap set of functions as part of d3
-      treemap.nodes({_children: d._children});
+      candidateTreemap.nodes({_children: d._children});
       d._children.forEach(function(c) {
         c.x = d.x + c.x * d.dx;
         c.y = d.y + c.y * d.dy;
@@ -109,7 +109,7 @@ function colorIncrements(d){
 }
 
 
-legend.append("rect")
+candidateLegend.append("rect")
     .attr("x", function(d){return margin.left + d * 40})
     .attr("y", 0)
     .attr("fill", function(d) {return color(colorIncrements(d))})
@@ -117,7 +117,7 @@ legend.append("rect")
     .attr('height', '40px')
 
 
-legend.append("text")
+candidateLegend.append("text")
         .text(function(d){return formatNumber(colorIncrements(d))})
         .attr('y', 20)
         .attr('x', function(d){return margin.left + d * 40 + 20});
@@ -132,22 +132,22 @@ d3.json("./data/candidate-treemap.json", function(root) {
   initialize(root);
   accumulate(root);
   layout(root);
-  display(root);
+  displayCandidate(root);
 
-  function display(d) {
-    grandparent
+  function displayCandidate(d) {
+    candidateGrandparent
         .datum(d.parent)
-        .on("click", transition)
+        .on("click", transitionCandidate)
       .select("text")
         .text(name(d))
 
-    // color header based on grandparent's rate
-    grandparent
+    // color header based on candidateGrandparent's rate
+    candidateGrandparent
       .datum(d.parent)
       .select("rect")
       .attr("fill", function(){console.log(color(d.rate)); return color(d['rate'])})
 
-    var g1 = svg.insert("g", ".grandparent")
+    var g1 = svgCandidate.insert("g", ".candidateGrandparent")
         .datum(d)
         .attr("class", "depth");
 
@@ -157,7 +157,7 @@ d3.json("./data/candidate-treemap.json", function(root) {
 
     g.filter(function(d) { return d._children; })
         .classed("children", true)
-        .on("click", transition);
+        .on("click", transitionCandidate);
 
     g.selectAll(".child")
         .data(function(d) { return d._children || [d]; })
@@ -176,11 +176,11 @@ d3.json("./data/candidate-treemap.json", function(root) {
         .text(function(d) { return d.name; })
         .call(text);
 
-    function transition(d) {
+    function transitionCandidate(d) {
       if (transitioning || !d) return;
       transitioning = true;
 
-      var g2 = display(d),
+      var g2 = displayCandidate(d),
           t1 = g1.transition().duration(750),
           t2 = g2.transition().duration(750);
 
@@ -189,10 +189,10 @@ d3.json("./data/candidate-treemap.json", function(root) {
       y.domain([d.y, d.y + d.dy]);
 
       // Enable anti-aliasing during the transition.
-      svg.style("shape-rendering", null);
+      svgCandidate.style("shape-rendering", null);
 
       // Draw child nodes on top of parent nodes.
-      svg.selectAll(".depth").sort(function(a, b) { return a.depth - b.depth; });
+      svgCandidate.selectAll(".depth").sort(function(a, b) { return a.depth - b.depth; });
 
       // Fade-in entering text.
       g2.selectAll("text").style("fill-opacity", 0);
@@ -205,7 +205,7 @@ d3.json("./data/candidate-treemap.json", function(root) {
 
       // Remove the old node when the transition is finished.
       t1.remove().each("end", function() {
-        svg.style("shape-rendering", "crispEdges");
+        svgCandidate.style("shape-rendering", "crispEdges");
         transitioning = false;
       });
     }
