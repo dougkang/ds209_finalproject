@@ -9,18 +9,47 @@
   overflow: scroll;
 }
 
+.viz_area path {
+  fill: #3182bd;
+  stroke: #08519c;
+  stroke-width: 1;
+}
+
+.viz_area circle {
+  fill: #08519c;
+}
+
+.viz_area .x.axis .tick line {
+  stroke: #111;
+  opacity: 0.2;
+}
+
 .left, .right {
+  height: 800;
   overflow: scroll;
 }
 
-.bar {
-  fill: gray;
-  stroke-width: 0;
+.area {
+  stroke-width: 0px;
+  opacity: 0.8;
 }
 
-.bar:hover {
-  fill: #fc8d59;
-  stroke: #fc8d59;
+.bar {
+  stroke-width: 0;
+  opacity: 0.8;
+}
+
+.selected:hover {
+  opacity: 0.2;
+}
+
+.highlighted {
+  opacity: 1.0;
+}
+
+.unselected {
+  fill: #111;
+  opacity: 0.5;
 }
 
 .axis {
@@ -37,3 +66,17 @@
   stroke: #111;
   opacity: 0.2;
 }
+
+.top .x.axis .tick line {
+  stroke: #111;
+  opacity: 0.2;
+}
+
+.hotspot {
+  opacity: 0.0;
+}
+
+.hotspot:hover {
+  opacity: 0.2;
+}
+
