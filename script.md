@@ -40,6 +40,8 @@ cycle and how it changes over time:
 
 ## 2000 Presidential Election
 
+[[ Chart with 2000 highlighted ]]
+
 Prior to 2000, presidential candidates relied on public funding.  The FEC matched
 a candidate's funds if they stuck to certain spending limits.  Candidates
 begrudgingly accepted these limits, seeing it as the FEC's matching as a good deal.
@@ -53,6 +55,8 @@ ushered in a new era of campaign finance.
 [[ Fundraising by Party ]]
 
 ## SpeechNow.org v. Federal Election Committee
+
+[[ Chart with 2010 highlighted ]]
 
 TODO explain
 
@@ -68,7 +72,7 @@ candidates are looking increasingly to PACs:
 PACs *have no limit to individual contributions and spending*.  Wealthy individuals
 are using PACs as a loophole to contribute more money to candidates.
 
-[[ PACs with Single Individual Contributors as Majority ]]
+[[ 
 
 ## Who is Standing Behind your Candidate?
 
@@ -77,3 +81,4 @@ are using PACs as a loophole to contribute more money to candidates.
 https://en.wikipedia.org/wiki/Campaign_finance_in_the_United_States
 https://en.wikipedia.org/wiki/Political_action_committee
 https://www.opensecrets.org/resources/dollarocracy/04.php
+http://www.mybudget360.com/how-much-do-americans-earn-what-is-the-average-us-income/

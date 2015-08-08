@@ -1,4 +1,4 @@
-function draw_stacked_area(viz, data, cycles, initial) {
+function draw_stacked_area(viz, data, cycles, initial, height, width) {
 
   var _top = {}
   var _bottom = {}
@@ -22,8 +22,8 @@ function draw_stacked_area(viz, data, cycles, initial) {
   { // Generate top panel
 
     _top.margin = { top: 30, right: 30, bottom: 30, left: 50 }
-    _top.height = 500 - _top.margin.top - _top.margin.bottom
-    _top.width = 1000 - _top.margin.left - _top.margin.right
+    _top.height = (6 * height / 10) - _top.margin.top - _top.margin.bottom
+    _top.width = width - _top.margin.left - _top.margin.right
 
     _top.fig = viz 
       .append('div')
@@ -42,7 +42,7 @@ function draw_stacked_area(viz, data, cycles, initial) {
         .y(function(d) { return d.values })
 
     var area = d3.svg.area()
-      .interpolate('basis')
+      .interpolate('monotone')
       .x(function(d) { return _top.x_scale(d3.format("02")(d['key'] % 100)) })
       .y0(function(d) { return _top.y_scale(d.y0) })
       .y1(function(d) { return _top.y_scale(d.y0 + d.y) })
@@ -83,7 +83,7 @@ function draw_stacked_area(viz, data, cycles, initial) {
 
     _top.fig.select('.y.axis')
       .append('text')
-        .text('Contribution ($K)')
+        .text('Contribution ($B)')
         .attr("transform", "rotate(-90)")
         .attr("y", -_top.margin.left)
         .attr("x", -(_top.height / 2))
@@ -94,8 +94,8 @@ function draw_stacked_area(viz, data, cycles, initial) {
   { // Generate main panel
 
     _bottom.margin = { top: 30, right: 30, bottom: 90, left: 50 }
-    _bottom.height = 400 - _bottom.margin.top - _bottom.margin.bottom
-    _bottom.width = 1000 - _bottom.margin.left - _bottom.margin.right
+    _bottom.height = (4 * height / 10) - _bottom.margin.top - _bottom.margin.bottom
+    _bottom.width = width - _bottom.margin.left - _bottom.margin.right
 
     _bottom.fig = viz
       .append("div")
@@ -136,7 +136,7 @@ function draw_stacked_area(viz, data, cycles, initial) {
 
     _bottom.fig.select('.y.axis')
       .append('text')
-        .text('Contribution ($K)')
+        .text('Contribution ($B)')
         .attr("transform", "rotate(-90)")
         .attr("y", -_bottom.margin.left)
         .attr("x", -(_bottom.height / 2.5))
@@ -239,10 +239,10 @@ function draw_stacked_area(viz, data, cycles, initial) {
     var bars = _bottom.fig.selectAll("rect")
       .data(my_data, function(d) { return d.key })
 
-    var y_max = d3.max(my_data.map(function(d) {  return d['values'] }))
+    var y_max = d3.max(my_data.map(function(d) { return d['total'] }))
 
     _bottom.y_scale = d3.scale.linear()
-      .domain([0, y_extent)
+      .domain([0, y_max])
       .range([_bottom.height - _bottom.margin.bottom, _bottom.margin.top])
 
     _bottom.y_axis = d3.svg.axis().scale(_bottom.y_scale).orient('left')

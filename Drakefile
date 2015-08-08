@@ -51,12 +51,18 @@ out/pac_other.csv <- headers/pac_other.headers.csv
   | LANG=C sed 's/"//g' \
   | LANG=C sed 's/|/"/g' >> $OUTPUT
 
-out/ic_org.csv <- out/indivs.sample.csv, out/cands.csv, out/cmtes.csv
+out/cont_out.csv <- out/indivs.csv, out/cands.csv, out/cmtes.csv
   python scripts/merge_contributions.py 
 
-%run <- out/ic_org.csv, out/categories.csv
+out/count_out.csv <- out/indivs.csv, out/cands.csv, out/cmtes.csv
+  python scripts/merge_buckets.py 
+
+out/pac_out.csv <- out/pacs.csv
+  python scripts/merge_pacs.py 
+
+%run <- out/cont_out.csv, out/count_out.csv, out/pac_out.csv, out/categories.csv
   mkdir -p http/data 
-  cp $INPUT0 $INPUT1 http/data/
+  cp $INPUT0 $INPUT1 $INPUT2 $INPUT3 http/data/
   cd http
   python -m SimpleHTTPServer
 

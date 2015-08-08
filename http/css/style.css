@@ -9,6 +9,21 @@
   overflow: scroll;
 }
 
+.viz_area path {
+  fill: #3182bd;
+  stroke: #08519c;
+  stroke-width: 1;
+}
+
+.viz_area circle {
+  fill: #08519c;
+}
+
+.viz_area .x.axis .tick line {
+  stroke: #111;
+  opacity: 0.2;
+}
+
 .left, .right {
   height: 800;
   overflow: scroll;
