@@ -58,7 +58,7 @@ out/count_out.csv <- out/indivs.csv, out/cands.csv, out/cmtes.csv
   python scripts/merge_buckets.py 
 
 out/pac_out.csv <- out/pacs.csv
-  python scripts/merge_pacs.py 
+  python scripts/merge_pac.py 
 
 %run <- out/cont_out.csv, out/count_out.csv, out/pac_out.csv, out/categories.csv
   mkdir -p http/data 

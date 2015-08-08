@@ -11,7 +11,7 @@ d3.csv("data/pac_out.csv")
   })
   .get(function(err, data) {
 
-    data.filter(function(d) { return d['Amount'] >= 0.0 })
+    data.filter(function(d) { return d['Amount'] >= 0.0 && !d.RealCode.startsWith('Z') })
 
     if (err) console.log(err)
     var nested = d3.nest()
@@ -34,9 +34,6 @@ d3.csv("data/pac_out.csv")
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
-    var height = 1000
-    var width = 1000
-
     draw_stacked_area(d3.select('#per_sector'), nested, cycles, [ 'Y4000', 'K1000', 'F2100' ],
-        height, width)
+        900, 900)
 })

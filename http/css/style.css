@@ -1,12 +1,10 @@
 #container {
   background-color: white;
-  width: 1000px;
-  padding: 25px 25px 25px 25px;
-  height: 100%;
+  width: 900px;
+  padding: 25px 30px 30px 25px;
   margin: 0 auto;
   border-left: solid 1px #CCC;
   border-right: solid 1px #CCC;
-  overflow: scroll;
 }
 
 .viz_area path {

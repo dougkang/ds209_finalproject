@@ -14,6 +14,16 @@ d3.csv("data/cont_out.csv")
   })
   .get(function(err, data) {
 
+    data = data
+      .map(function(d) { 
+        if (d.RealCode == 'Z9800') {
+          d.Destination = 'Public'
+        } else if (d.RealCode.startsWith('Z')) {
+          d.Destination = 'Party'
+        }
+        return d
+      })
+
     if (err) console.log(err)
     var nested = d3.nest()
     .key(function(d) { return d['Destination'] })
@@ -33,9 +43,9 @@ d3.csv("data/cont_out.csv")
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
-    var height = 1000
-    var width = 1000
+    var height = 900 
+    var width = 490
 
     draw_stacked_area(d3.select('#per_type'), nested, cycles, [ 'Cmte', 'Cand' ],
-        height, width)
+        900, 490)
 })

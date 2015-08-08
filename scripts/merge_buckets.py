@@ -5,7 +5,7 @@ ic = pd.read_csv("out/indivs.csv", error_bad_lines=False)
 ic = ic.loc[ic['Cycle'] % 4 == 0, ['Cycle', 'RecipID', 'Orgname', 'Amount']]
 ic['Count'] = 1
 ic['Bucket'] = pd.cut(ic['Amount'], bins = [ 0, 500, 1000, 2500, 30000, ic['Amount'].max() ], \
-                      labels = [ "a", "b", "c", "d" ])
+                      labels = [ "a", "b", "c", "d", "e" ])
 ic = ic.groupby([ "Cycle", "Bucket"]).sum().reset_index()
 ic = ic.loc[ic['Cycle'] != 2016]
 
