@@ -11,15 +11,18 @@ d3.csv("data/cont_pacs_out.csv")
   })
   .get(function(err, data) {
 
+    // Contributions to PACs
+
     data = data
       .filter(function(d) { return d['Amount'] >= 0.0 && !d.RealCode.startsWith('Z') })
+      .filter(function(d) { return d['Cycle'] >= 2004 })
 
     if (err) console.log(err)
     var nested = d3.nest()
     .key(function(d) { return d['Bucket'] })
     .key(function(d) { return d['Cycle'] })
       .rollup(function(ds) {
-        var amt = d3.sum(ds.map(function(x) { return x['Amount'] })) / 1000000000
+        var amt = d3.sum(ds.map(function(x) { return x['Amount'] })) / 1000000
         if (amt < 0) return 0.0 
         else return amt
       })
@@ -34,5 +37,15 @@ d3.csv("data/cont_pacs_out.csv")
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
     draw_stacked_area(d3.select('#per_pac'), nested, cycles, [ 'a', 'b', 'c', 'd', 'e' ],
-        900, 800)
+        900, 800,
+        { 
+          top: {
+            x_label: 'Year',
+            y_label: 'Contributions ($M)' 
+          },
+          bottom: {
+            x_label: 'Donation Amount ($)',
+            y_label: 'Contributions ($M)' 
+          }
+        })
 })

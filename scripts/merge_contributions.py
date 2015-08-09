@@ -4,6 +4,7 @@ import pandas as pd
 ic = pd.read_csv("out/indivs.csv", error_bad_lines=False)
 ic = ic.loc[ic['Cycle'].astype(int) % 4 == 0, ['Cycle', 'RecipID', 'Orgname', 'RealCode', 'Amount']]
 ic['Count'] = 1
+ic['RealCode'] = map(lambda x: x[0], ic['RealCode'])
 ic = ic.groupby([ "Cycle", "RecipID", "Orgname", "RealCode"]).sum().reset_index()
 ic = ic.loc[ic['Cycle'] != 2016]
 

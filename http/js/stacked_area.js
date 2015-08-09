@@ -1,4 +1,4 @@
-function draw_stacked_area(viz, data, cycles, initial, height, width) {
+function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
 
   var _top = {}
   var _bottom = {}
@@ -27,7 +27,7 @@ function draw_stacked_area(viz, data, cycles, initial, height, width) {
 
     _top.fig = viz 
       .append('div')
-      .attr("class", 'contributions top')
+      .attr("class", 'stacked top')
         .append("svg")
           .attr("height", _top.height)
           .attr("width", _top.width)
@@ -69,7 +69,7 @@ function draw_stacked_area(viz, data, cycles, initial, height, width) {
 
     _top.fig.select('.x.axis')
       .append('text')
-        .text('Year')
+        .text(options.top.x_label)
         .attr('x', (_top.width/2) - _top.margin.left)
         .attr('y', _top.height)
 
@@ -83,7 +83,7 @@ function draw_stacked_area(viz, data, cycles, initial, height, width) {
 
     _top.fig.select('.y.axis')
       .append('text')
-        .text('Contribution ($B)')
+        .text(options.top.y_label)
         .attr("transform", "rotate(-90)")
         .attr("y", -_top.margin.left)
         .attr("x", -(_top.height / 2))
@@ -130,13 +130,13 @@ function draw_stacked_area(viz, data, cycles, initial, height, width) {
 
     _bottom.fig.select('.x.axis')
       .append('text')
-        .text('Industry/Ideology')
+        .text(options.bottom.x_label)
         .attr('x', (_bottom.width/2) - _bottom.margin.left)
         .attr('y', _bottom.margin.bottom / 1.5)
 
     _bottom.fig.select('.y.axis')
       .append('text')
-        .text('Contribution ($B)')
+        .text(options.bottom.y_label)
         .attr("transform", "rotate(-90)")
         .attr("y", -_bottom.margin.left)
         .attr("x", -(_bottom.height / 2.5))

@@ -27,8 +27,8 @@ d3.csv("data/ic_org.csv")
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
     var margin = { top: 30, right: 30, bottom: 30, left: 50 }
-    var height = 500
-    var width = 1000
+    var height = 300
+    var width = 900 
 
     var x = draw_area(d3.select('#contributions'), nested, cycles, height, width, margin)
 })

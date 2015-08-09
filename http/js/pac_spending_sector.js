@@ -5,20 +5,20 @@ d3.csv("data/pac_out.csv")
       'Cycle': parseInt(d['Cycle']),
       'EntityId': d['EntityId'],
       'Party': d['Party'],
-      'RealCode': d['RealCode'],
+      'RealCode': d['RealCode'].toLowerCase(),
       'Type': d['Type']
     }
   })
   .get(function(err, data) {
 
-    data.filter(function(d) { return d['Amount'] >= 0.0 && !d.RealCode.startsWith('Z') })
+    data = data.filter(function(d) { return d['Amount'] >= 0.0 && d.RealCode != 'z' })
 
     if (err) console.log(err)
     var nested = d3.nest()
     .key(function(d) { return d['RealCode'] })
     .key(function(d) { return d['Cycle'] })
       .rollup(function(ds) {
-        var amt = d3.sum(ds.map(function(x) { return x['Amount'] })) / 1000000000
+        var amt = d3.sum(ds.map(function(x) { return x['Amount'] })) / 1000000
         if (amt < 0) return 0.0 
         else return amt
       })
@@ -29,11 +29,20 @@ d3.csv("data/pac_out.csv")
       return d
     })
     .sort(function(a, b) { return d3.descending(a['total'], b['total']) })
-    .filter(function(d) { return d.key != 'Z5100' && d.key != 'Z5200' && d.key != 'Z5300' })
-    .slice(0, 40)
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
-    draw_stacked_area(d3.select('#per_sector'), nested, cycles, [ 'Y4000', 'K1000', 'F2100' ],
-        900, 900)
+    draw_stacked_area(d3.select('#per_sector'), nested, cycles, 
+        nested.map(function(d) { return d.key }),
+        900, 900,
+        { 
+          top: {
+            x_label: 'Year',
+            y_label: 'Contributions ($M)' 
+          },
+          bottom: {
+            x_label: 'Sector',
+            y_label: 'Contributions ($M)' 
+          }
+        })
 })
