@@ -1,0 +1,186 @@
+{
+  "children": [
+    {
+      "children": [
+        {
+          "rate": 0.4066358024691358,
+          "amount": 27169,
+          "value": 769,
+          "name": "Company #1"
+        },
+        {
+          "rate": 0.35092180546726004,
+          "amount": 41021,
+          "value": 1021,
+          "name": "Company #2"
+        },
+        {
+          "rate": 0.44886363636363635,
+          "amount": 6191,
+          "value": 291,
+          "name": "Company #3"
+        },
+        {
+          "rate": 0.4716981132075472,
+          "amount": 418,
+          "value": 28,
+          "name": "Company #4"
+        },
+        {
+          "rate": 0.234860883797054,
+          "amount": 12135,
+          "value": 935,
+          "name": "Company #5"
+        }
+      ],
+      "rate": 0.348458904109589,
+      "name": "Private Sector"
+    },
+    {
+      "children": [
+        {
+          "rate": 0.36470588235294116,
+          "amount": 83124,
+          "value": 324,
+          "name": "Organization #1"
+        },
+        {
+          "rate": 0.06147540983606557,
+          "amount": 14158,
+          "value": 458,
+          "name": "Organization #2"
+        },
+        {
+          "rate": 0.3368055555555556,
+          "amount": 125173,
+          "value": 573,
+          "name": "Organization #3"
+        },
+        {
+          "rate": 0.14285714285714285,
+          "amount": 51312,
+          "value": 32,
+          "name": "Organization #4"
+        },
+        {
+          "rate": 0.010443864229765013,
+          "amount": 237174,
+          "value": 774,
+          "name": "Organization #5"
+        }
+      ],
+      "rate": 0.18637048192771086,
+      "name": "Public Sector"
+    },
+    {
+      "children": [
+        {
+          "rate": 0.5954198473282443,
+          "amount": 9513,
+          "value": 53,
+          "name": "Donor Type #1"
+        },
+        {
+          "rate": 0.5423076923076923,
+          "amount": 31119,
+          "value": 119,
+          "name": "Donor Type #2"
+        },
+        {
+          "rate": 0.575,
+          "amount": 25117,
+          "value": 17,
+          "name": "Donor Type #3"
+        },
+        {
+          "rate": 0.75,
+          "amount": 871,
+          "value": 7,
+          "name": "Donor Type #4"
+        },
+        {
+          "rate": 0.2391304347826087,
+          "amount": 7517,
+          "value": 57,
+          "name": "Donor Type #5"
+        }
+      ],
+      "rate": 0.47401247401247404,
+      "name": "Other"
+    },
+    {
+      "children": [
+        {
+          "rate": 0.39619651347068147,
+          "amount": 22517162,
+          "value": 762,
+          "name": "Pac #1"
+        },
+        {
+          "rate": 0.1719260065288357,
+          "amount": 8927161,
+          "value": 761,
+          "name": "Pac #2"
+        },
+        {
+          "rate": 0.2727272727272727,
+          "amount": 336108,
+          "value": 608,
+          "name": "Pac #3"
+        },
+        {
+          "rate": 0.23809523809523808,
+          "amount": 51418,
+          "value": 48,
+          "name": "Pac #4"
+        },
+        {
+          "rate": 0.05090137857900318,
+          "amount": 788195,
+          "value": 895,
+          "name": "Pac #5"
+        }
+      ],
+      "rate": 0.2358936117325379,
+      "name": "PACs"
+    },
+    {
+      "children": [
+        {
+          "rate": 0.3829268292682927,
+          "amount": 122153,
+          "value": 253,
+          "name": "Donor #1"
+        },
+        {
+          "rate": 0.46920821114369504,
+          "amount": 53162,
+          "value": 362,
+          "name": "Donor #2"
+        },
+        {
+          "rate": 0.3368421052631579,
+          "amount": 3613,
+          "value": 63,
+          "name": "Donor #3"
+        },
+        {
+          "rate": 0.6363636363636364,
+          "amount": 4118,
+          "value": 18,
+          "name": "Donor #4"
+        },
+        {
+          "rate": 0.06116207951070336,
+          "amount": 53107,
+          "value": 307,
+          "name": "Donor #5"
+        }
+      ],
+      "rate": 0.3422950819672131,
+      "name": "Individual"
+    }
+  ],
+  "rate": 0.28656039777712783,
+  "name": "Democrat"
+}
