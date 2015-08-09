@@ -8,8 +8,8 @@ var margin = {top: 30, right: 0, bottom: 20, left: 0},
 
 // sets x and y scale to determine size of visible boxes
 var x = d3.scale.linear()
-    .domain([0, width / 2])
-    .range([0, width / 2]);
+    .domain([0, width / 2.5])
+    .range([0, width / 2.5]);
 
 var y = d3.scale.linear()
     .domain([0, height])
@@ -35,7 +35,7 @@ var republicanTreemap = d3.layout.treemap()
     .round(false);
 
 var svgDemocrat = d3.select("#democrat-chart").append("svg")
-    .attr("width", (width + margin.left + margin.right) / 2)
+    .attr("width", (width + margin.left + margin.right) / 2.5)
     .attr("height", height + margin.bottom + margin.top)
     .style("margin-left", -margin.left + "px")
     .style("margin.right", -margin.right + "px")
@@ -48,7 +48,7 @@ var democratGrandparent = svgDemocrat.append("g")
 
 democratGrandparent.append("rect")
     .attr("y", -margin.top)
-    .attr("width", width / 2)
+    .attr("width", width / 2.5)
     .attr("height", margin.top);
 
 democratGrandparent.append("text")
@@ -57,7 +57,7 @@ democratGrandparent.append("text")
     .attr("dy", ".75em");
 
 var svgRepublican = d3.select("#republican-chart").append("svg")
-    .attr("width", (width + margin.left + margin.right) / 2)
+    .attr("width", (width + margin.left + margin.right) / 2.5)
     .attr("height", height + margin.bottom + margin.top)
     .style("margin-left", -margin.left + "px")
     .style("margin.right", -margin.right + "px")
@@ -70,7 +70,7 @@ var republicanGrandparent = svgRepublican.append("g")
 
 republicanGrandparent.append("rect")
     .attr("y", -margin.top)
-    .attr("width", width / 2)
+    .attr("width", width / 2.5)
     .attr("height", margin.top);
 
 republicanGrandparent.append("text")
@@ -91,7 +91,7 @@ var partyLegend = d3.select("#legend").append("svg")
 
 function initialize(root) {
     root.x = root.y = 0;
-    root.dx = width / 2;
+    root.dx = width / 2.5;
     root.dy = height;
     root.depth = 0;
   }
