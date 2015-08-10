@@ -18,7 +18,7 @@ d3.csv("data/cont_out.csv")
       .map(function(d) { 
         if (d.RealCode == 'Z9800') {
           d.Destination = 'Public'
-        } else if (d.RealCode.startsWith('Z')) {
+        } else if (d.RealCode && d.RealCode.toLowerCase() == 'z') {
           d.Destination = 'Party'
         }
         return d
