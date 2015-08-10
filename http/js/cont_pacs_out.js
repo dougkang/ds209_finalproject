@@ -13,31 +13,33 @@ d3.csv("data/cont_pacs_out.csv")
 
     // Contributions to PACs
 
-    data = data
-      .filter(function(d) { return d['Amount'] >= 0.0 && !d.RealCode.startsWith('Z') })
-      .filter(function(d) { return d['Cycle'] >= 2004 })
+    data = data.filter(function(d) { return d['Amount'] >= 0.0 })
 
     if (err) console.log(err)
     var nested = d3.nest()
-    .key(function(d) { return d['Bucket'] })
-    .key(function(d) { return d['Cycle'] })
-      .rollup(function(ds) {
-        var amt = d3.sum(ds.map(function(x) { return x['Amount'] })) / 1000000
-        if (amt < 0) return 0.0 
-        else return amt
+      .key(function(d) { return d['Bucket'] })
+      .key(function(d) { return d['Cycle'] })
+        .rollup(function(ds) {
+          var amt = d3.sum(ds.map(function(x) { return x['Amount'] })) / 1000000
+          if (amt < 0) return 0.0 
+          else return amt
+        })
+      .entries(data)
+      .map(function(d) { 
+        var total = d3.sum(d['values'].map(function(x) { return x['values'] }))
+        d['total'] = total
+        return d
       })
-    .entries(data)
-    .map(function(d) { 
-      var total = d3.sum(d['values'].map(function(x) { return x['values'] }))
-      d['total'] = total
-      return d
-    })
-    .sort(function(a, b) { return d3.descending(a['key'], b['key']) })
+      .sort(function(a, b) { return d3.ascending(a['key'], b['key']) })
+      .map(function(d) {
+        d.label = bucket_mapping[d.key]
+        return d
+      })
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
-    draw_stacked_area(d3.select('#per_pac'), nested, cycles, [ 'a', 'b', 'c', 'd', 'e' ],
-        900, 800,
+    var fig = draw_stacked_area(d3.select('#per_pac'), nested, cycles, [ 'a', 'b', 'c', 'd', 'e' ],
+        825, 900,
         { 
           top: {
             x_label: 'Year',

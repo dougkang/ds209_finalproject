@@ -25,16 +25,19 @@ d3.csv("data/count_out.csv")
       return d
     })
     .sort(function(a, b) { return d3.ascending(a['key'], b['key']) })
+    .map(function(d) {
+      d.label = bucket_mapping[d.key]
+      return d
+    })
 
     var cycle_totals = nested[0].values.map(function(d, i) {
       var amts = nested.map(function(x) { return x.values[i].values })
-      console.log(amts)
       return d3.sum(amts)
     })
 
     nested = nested.map(function(d) {
       d.values = d.values.map(function(x, i) { 
-        x.values = x.values / cycle_totals[i]
+        x.values = x.values / cycle_totals[i] * 100
         return x
       })
       return d
@@ -43,11 +46,11 @@ d3.csv("data/count_out.csv")
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
     draw_stacked_area(d3.select('#per_amount'), nested, cycles, [ 'a', 'b', 'c', 'd', 'e' ],
-      800, 450,
+      825, 450,
       { 
         top: {
           x_label: 'Year',
-          y_label: 'Contributions ($B)' 
+          y_label: '% of Contributions' 
         },
         bottom: {
           x_label: 'Donation Amount ($)',
