@@ -148,15 +148,15 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
   update_top()
   update_bottom() 
 
-  _all.unselected.forEach(function(d) { d3.selectAll('.' + d.key).classed('unselected', true) })
-  _all.selected.forEach(function(d) { d3.selectAll('.' + d.key).classed('unselected', false) })
+  _all.unselected.forEach(function(d) { _bottom.fig.selectAll('.' + d.key).classed('unselected', true) })
+  _all.selected.forEach(function(d) { _bottom.fig.selectAll('.' + d.key).classed('unselected', false) })
 
   function update_top() {
 
     var real_codes = _top.stack(_all.selected)
 
-    _all.unselected.forEach(function(d) { d3.selectAll('.' + d.key).classed('unselected', true) })
-    _all.selected.forEach(function(d) { d3.selectAll('.' + d.key).classed('unselected', false) })
+    _all.unselected.forEach(function(d) { _bottom.fig.selectAll('.' + d.key).classed('unselected', true) })
+    _all.selected.forEach(function(d) { _bottom.fig.selectAll('.' + d.key).classed('unselected', false) })
 
     var y_max = d3.max(real_codes.map(function(d) { 
       return d3.max(d['values'].map(function(x) { return x.y0 + x.y }))
