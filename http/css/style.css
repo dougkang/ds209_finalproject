@@ -1,10 +1,13 @@
+body {
+  background-color: #FAFAFA;
+}
+
 #container {
   background-color: white;
   width: 900px;
   padding: 25px 30px 30px 25px;
-  margin: 0 auto;
-  border-left: solid 1px #CCC;
-  border-right: solid 1px #CCC;
+  margin: 0 auto 20px auto;
+  border: solid 1px #CCC;
 }
 
 .viz_area path {
