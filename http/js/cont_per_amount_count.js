@@ -22,15 +22,19 @@ d3.csv("data/count_out.csv")
       return d
     })
     .sort(function(a, b) { return d3.ascending(a['key'], b['key']) })
+    .map(function(d) {
+      d.label = bucket_mapping[d.key]
+      return d
+    })
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
     draw_stacked_area(d3.select('#per_amount_count'), nested, cycles, [ 'a', 'b', 'c', 'd', 'e' ],
-      800, 450,
+      825, 450,
       { 
         top: {
           x_label: 'Year',
-          y_label: '# of Contributions' 
+          y_label: '# of Contributions (Millions)' 
         },
         bottom: {
           x_label: 'Donation Amount ($)',

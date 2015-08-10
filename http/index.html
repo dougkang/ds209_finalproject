@@ -21,43 +21,46 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p>With the coming 2016 election, it is important for us to be aware of what is
+          <p>With the coming 2016 election, it is important for us to be aware of what could be
           driving our future president's decisions.  One major motivator in politics is money.
           Thus, as the average citizen, it is important for us know who or what is supporting 
           your politician financially.</p>
-          <p>Since the turn of the 20th century, two landmark events have quietly but forcefully
+          <p>Since the turn of the 20th century, two landmark events have forcefully
           changed the United States's campaign financing landscape.  The 2000 Presidential 
           Election showed that it was possible to raise large amounts of funds without the 
-          help of the Federal Election Commission (FEC).  Also, the <em>SpeechNow.org v. Federal 
+          help of the Federal Election Commission (FEC).  Also, the <em>Citizens United v. Federal 
           Election Commission</em> ruling saw the rise of Super PACS. These two events have 
-          completely flipped the way politicians raise money.</p>
+        completely flipped where politicians raise money.</p>
           <p>We will look at the impact of these two events by following the money.</p>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
-          <h2>Campaign Finance 101</h2>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-md-6">
+          <h2>Campaign Finance 101</h2>
           <p>The modern presidential political campaign is almost impossible to personally finance.
-          The 2008 cycle saw presidential candidates spending $2.4 billion in total.
-          So, politicians look to a variety of sources for additional financial support:</p>
+          To put things into perspective, the 2008 cycle saw presidential candidates spending $2.4 billion in total. So, politicians look to a variety of sources for additional financial support:</p>
           <ol>
-          <li>The National Party Committee the candidate is affiliated with (e.g. The Democratic or Republican National Committees)</li>
-          <li>Political Action Committees (e.g Citizens United) an organization that campaigns for or against candidates, ballot initiatives, or other types of legislation.</li>
-          <li>Individuals (e.g. you)</li>
-          <li>FEC, if the candidate stays under specific spending limits</li>
+            <li>The <b>National Party Committee</b> the candidate is affiliated with (e.g. The Democratic or Republican National Committees)</li>
+            <li><b>Political Action Committees</b> (e.g Citizens United), organizations that campaign for or against candidates, ballot initiatives, or other types of legislation.</li>
+            <li><b>Individuals</b> (e.g. you)</li>
+            <li>The <b>Federal Election Committee</b> (FEC), if the candidate stays under specific spending limits</li>
           </ol>
-          <p>Special limits on contributions are put in place to ensure that a single person or
-          entity does not contribute a majority of a candidate's funds.
-          why we </p>
-          <p>To the right, we can see the amount of donations per source made in each presidential 
-          cycle and how it changes over time:</p>
-          <p>TODO explain how to use the viz to the right</p>
+          <p>To avoid corruption of our officials, special limits on contributions are put in place to ensure that a single person or
+          entity does not contribute a majority of a candidate's funds.</p>
+          <hr>
+          <p>To the right, we can see where donors are sending their money during each presidential cycle and how it changes over time.</p>
+          <ol>
+            <li>Mouse over cycles to compare years in the bar chart below.</li>
+            <li>Click on the bars in the bar chart to include or exclude them from the area chart above.</li>
+          </ol>
+          <p>You can see that PAC donations dominate all types of donations. This is because the limit for donating to PACs is much higher than donating directly to the candidate ($30,800 vs. $2,600).  Certain independent expenditure PACs also enjoy no limit on donation amounts.</p>
+          <p>We can also observe certain points of inflection, which will be explained in a later
+          section marked on the graph.</p>
         </div>
-        <div id="per_type" class="col-md-6"></div>
+        <div class="col-md-6">
+          <h3>Donor Destinations from 1992-2012</h3>
+          <div id="per_type" class="col-md-6"></div>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -66,21 +69,46 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p>[[ Chart with 2000 highlighted ]]</p>
-          <p>Prior to 2000, presidential candidates relied on public funding.  The FEC matched
-          a candidate's funds if they stuck to certain spending limits.  Candidates
-          begrudgingly accepted these limits, seeing it as the FEC's matching as a good deal.</p>
-          <p>In the 2000, GOP frontrunners Steve Forbes and George W. Bush both refused the 
+          <p>Prior to 2000, presidential candidates relied heavily on public funding.  
+          The FEC matched a candidate's funds if they stuck to certain spending limits.  
+          Candidates begrudgingly accepted these limits, seeing the FEC's matching as a good deal.</p>
+          <p>In the 2000 election, GOP frontrunners Steve Forbes and George W. Bush both refused the 
           matching funds so that they could blow past the spending limits in order to 
           gain an advantage over the other.  The 2000 cycle saw Bush raising over 
-          $100 million total, a number previously thought impossible.  This arms race
-          ushered in a new era of campaign finance.</p>
-          <p>[[ Average Fundraising prioir to 2000, Bush, and Forbes ]]</p>
-          <h2>SpeechNow.org v. Federal Election Committee</h2>
-          <p>[[ Chart with 2010 highlighted ]]</p>
-          <p>TODO explain</p>
-          <p>Since this ruling, the number</p>
-          <div id="per_sector" class="row-fluid"></div>
+          $70 million, a number previously thought impossible.  The bar was raised,
+          and the continued arms race ushered in a new era of campaign finance.</p>
+
+          <p>The close election exposed a loophole where party committees could contribute
+          unlimited funds to candidates.  The 2002 Bipartisan Campaign Reform Act fixed that 
+          and all was well with the world.</p>
+        </div>
+        <div class="col-md-12">
+          <h3>Donations to Forbes and Bush in 2000 vs. Top Candidates in 1996</h3>
+          <div id="per_candidate_bush"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Citizens United v. Federal Election Committee</h2>
+          <p>With the party committee loophole closed and the fight for campaign funds continuing
+          to escalate, candidates looked to PACs to augment their warchests.  In the 2008 election,
+          candidates used another loophole, using independent expenditure PACs to bypass 
+          contribution limits and quickly raise campaign funds.
+          </p>
+          <p> In 2010, the Supreme Court supported this practice by ruling that the prohibition 
+          of all independent expenditures violated the First Amendment.  As long as PACs do not 
+          directly contribute to or coordinate with a candidate, they are able to receive and 
+          spend unlimited amounts of money.</p>
+
+          <p>In essence, the ruling ensured that wealthy individuals, corporations, and other 
+          organizations can sidestep donation limits by creating and contributing to PACs.  
+          Since the ruling, PAC spending has skyrocketed.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h3>PAC Spending</h3>
+          <div id="per_sector"></div>
         </div>
       </div>
       <div class="row">
@@ -90,22 +118,48 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p>With presidential candidates having to raise more to keep from being left behind,
-          candidates are looking increasingly to PACs:</p>
-          <div id="per_type"></div>
-
-          <p>PACs <em>have no limit to individual contributions and spending</em>.  Wealthy individuals
-          are using PACs as a loophole to contribute more money to candidates.</p>
-
+          <p>Presidential candidates have to raise more to keep from being left behind, but must 
+          do so in the same amount time.  While online donating has made it easier than ever for
+          candidates to reach the masses, it is more efficient to land the proverbial big fish.
+          To overcome contribution limits, candidates are looking increasingly to PACs. </p>
         </div>
       </div>
       <div class="row">
-        <div id="per_pac" class="col-md-12"></div>
+        <div class="col-md-12">
+          <p>While the number of contributions &lt;$500 has increased significantly, these
+          contributions are making up less and less of the overall fundraising landscape.
+          </p>
+          <p>On the other hand, contributions over $2600 (over the individual contribution limit)
+          has increased from 37% to 50% of all contributions.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h3>Percentage Total Contribution by Donation Amount</h3>
+          <div id="per_amount"></div>
+        </div>
+        <div class="col-md-6">
+          <h3>Number of Contributions by Donation Amount</h3>
+          <div id="per_amount_count"></div>
+        </div>
       </div>
       <div class="row">
-        <div id="per_amount" class="col-md-6"></div>
-        <div id="per_amount_count" class="col-md-6"></div>
+        <div class="col-md-12">
+          <p>The issue at hand is simply that PACs <em>have no limit to individual contributions and spending</em>.  As a result, wealthy individuals are using PACs circumvent contribution limits that were put in place to prevent corruption.</p>
+          <p>The graph below shows contribution amounts to PACs.  We see a dramatic increase 
+          in contributions &gt;$2600.
+          </p>
+        </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Contributions to PACs by Donation Amount</h3>
+          <div id="per_pac"></div>
+          <p class="small">
+            <b>Note:</b> Forbes self-funded himself in the 2000 election. Self-funding is unlimited
+          </p>
+        </div>
+      </div>
+        <div id="per_pac" class="col-md-12"></div>
       <div class="row">
         <div class="col-md-12">
           <h2>Who is Standing Behind your Candidate?</h2>
@@ -127,16 +181,19 @@
       http://www.mybudget360.com/how-much-do-americans-earn-what-is-the-average-us-income/</p>
       <div id="contributions" class="row-fluid"></div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-      <script src="/js/d3.slider.js"></script>
-      <script src="/js/stacked_area.js"></script>
-      <script src="/js/area.js"></script>
-      <script src="/js/cont_total.js"></script>
-      <script src="/js/cont_per_type.js"></script>
-      <script src="/js/pac_spending_sector.js"></script>
-      <script src="/js/cont_pacs_out.js"></script>
-      <script src="/js/cont_per_amount.js"></script>
-      <script src="/js/cont_per_amount_count.js"></script>
-      <script src="/js/contributionTreemap.js"></script>
+      <script src="js/d3.slider.js"></script>
+      <script src="js/mappings.js"></script>
+      <script src="js/stacked_area.js"></script>
+      <script src="js/area.js"></script>
+      <script src="js/bar.js"></script>
+      <script src="js/cont_total.js"></script>
+      <script src="js/cont_per_type.js"></script>
+      <script src="js/pac_spending_sector.js"></script>
+      <script src="js/cont_pacs_out.js"></script>
+      <script src="js/cont_per_cand.js"></script>
+      <script src="js/cont_per_amount.js"></script>
+      <script src="js/cont_per_amount_count.js"></script>
+      <script src="js/contributionTreemap.js"></script>
     
     </div>
   </body>

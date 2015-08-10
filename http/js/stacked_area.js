@@ -43,7 +43,7 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
 
     var area = d3.svg.area()
       .interpolate('monotone')
-      .x(function(d) { return _top.x_scale(d3.format("02")(d['key'] % 100)) })
+      .x(function(d) { return _top.x_scale(d3.format("02")(d.key % 100)) })
       .y0(function(d) { return _top.y_scale(d.y0) })
       .y1(function(d) { return _top.y_scale(d.y0 + d.y) })
 
@@ -108,7 +108,7 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
       .attr('class', 'x axis')
 
     _bottom.x_scale = d3.scale.ordinal()
-      .domain(_all.data.map(function(d) { return d['key'] }))
+      .domain(_all.data.map(function(d) { return d.label }))
       .rangeBands([_bottom.margin.left, _bottom.width], 0.1, 0.1)
 
     _bottom.x_axis = d3.svg.axis().scale(_bottom.x_scale)
@@ -200,6 +200,45 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
         .transition()
         .duration(500)
 
+    _top.fig.selectAll('.markers').remove()
+    var markers = _top.fig
+      .append('g')
+        .attr('class', 'markers')
+
+    markers
+      .append('line')
+        .attr('class', 'marker')
+        .attr('stroke-dasharray', "5,5")
+        .attr('x1', _top.x_scale("00"))
+        .attr('y1', _top.margin.top)
+        .attr('x2', _top.x_scale("00"))
+        .attr('y2', _top.height - _top.margin.bottom)
+
+    markers
+      .append('line')
+        .attr('class', 'marker')
+        .attr('stroke-dasharray', "5,5")
+        .attr('x1', (_top.x_scale("08") + _top.x_scale("12")) / 2)
+        .attr('y1', _top.margin.top)
+        .attr('x2', (_top.x_scale("08") + _top.x_scale("12")) / 2)
+        .attr('y2', _top.height - _top.margin.bottom)
+
+    markers
+      .append('text')
+        .text('2000 Pres. Election')
+        .attr('x', _top.x_scale("00")-50)
+        .attr('y', _top.margin.top - 5)
+        .attr('font-family', 'sans-serif')
+        .attr('font-size', '0.9em')
+
+    markers
+      .append('text')
+        .text('2010: Citizens United')
+        .attr('x', ((_top.x_scale("08") + _top.x_scale("12")) / 2) -70)
+        .attr('y', _top.margin.top - 5)
+        .attr('font-family', 'sans-serif')
+        .attr('font-size', '0.9em')
+
     _top.fig.selectAll('.hotspot').remove()
 
     _top.fig.selectAll('.hotspot')
@@ -208,8 +247,8 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
           .attr('class', 'hotspot')
           .append('rect')
             .attr("class", "hotspots")
-            .attr('x', function(d) { return _top.x_scale(d) - 15 })
-            .attr("width", 30)
+            .attr('x', function(d) { return _top.x_scale(d) - 25 })
+            .attr("width", 50)
             .attr("y", function(d) { return 0 })
             .attr("height", function(d) { return _top.height - _top.margin.bottom  })
             .on('mouseover', function(d) { 
@@ -228,18 +267,18 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
 
     if (_bottom.cycle) {
       my_data = my_data.map(function(d) { 
-        var total = d3.sum(d['values']
+        var total = d3.sum(d.values
           .filter(function(d) { return d3.format("02")(d.key % 100) == _bottom.cycle })
-          .map(function(x) { return x['values'] }))
-        return { 'key': d.key, 'total': total }
+          .map(function(x) { return x.values }))
+        return { 'key': d.key, 'label': d.label, 'total': total }
       })
-      .sort(function(a, b) { return d3.descending(a['total'], b['total']) })
+      .sort(function(a, b) { return d3.descending(a.total, b.total) })
     }
 
     var bars = _bottom.fig.selectAll("rect")
       .data(my_data, function(d) { return d.key })
 
-    var y_max = d3.max(my_data.map(function(d) { return d['total'] }))
+    var y_max = d3.max(my_data.map(function(d) { return d.total }))
 
     _bottom.y_scale = d3.scale.linear()
       .domain([0, y_max])
@@ -255,20 +294,20 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
 
     bars 
       .transition()
-      .attr("x", function(d) { return _bottom.x_scale(d['key']) })
+      .attr("x", function(d) { return _bottom.x_scale(d.label) })
       .attr("width", _bottom.x_scale.rangeBand())
-      .attr("y", function(d) { return _bottom.y_scale(d['total']) })
+      .attr("y", function(d) { return _bottom.y_scale(d.total) })
       .attr("height", function(d) { return _bottom.height - _bottom.margin.bottom - _bottom.y_scale(d['total']) })
 
     bars 
       .enter()
       .append("rect")
-        .attr("x", function(d) { return _bottom.x_scale(d['key']) })
+        .attr("x", function(d) { return _bottom.x_scale(d.label) })
         .attr("width", _bottom.x_scale.rangeBand())
-        .attr("y", function(d) { return _bottom.y_scale(d['total']) })
+        .attr("y", function(d) { return _bottom.y_scale(d.total) })
         .attr("height", function(d) { return _bottom.height - _bottom.margin.bottom - _bottom.y_scale(d['total']) })
-        .attr('fill', function(d) { return _all.color_scale(d['key']) })
-        .attr("class", function(d) { return "bar " + d['key'] })
+        .attr('fill', function(d) { return _all.color_scale(d.key) })
+        .attr("class", function(d) { return "bar " + d.key })
         .on("click", function(d) {
           var keys_selected = _all.selected.map(function(d) { return d.key })
           var idx = keys_selected.indexOf(d.key)

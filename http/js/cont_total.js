@@ -14,6 +14,8 @@ d3.csv("data/ic_org.csv")
   })
   .get(function(err, data) {
 
+    data = data.filter(function(d) { return d.Cycle < 2016 })
+
     if (err) console.log(err)
     var nested = d3.nest()
     .key(function(d) { return d['Cycle'] })
@@ -26,9 +28,15 @@ d3.csv("data/ic_org.csv")
     .sort(function(a, b) { return d3.descending(a['key'], b['key']) })
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
-    var margin = { top: 30, right: 30, bottom: 30, left: 50 }
     var height = 300
     var width = 900 
 
-    var x = draw_area(d3.select('#contributions'), nested, cycles, height, width, margin)
+    var x = draw_area(d3.select('#contributions'), nested, cycles, 
+      height, width,
+      { 
+        main: {
+          x_label: 'Year',
+          y_label: 'Contributions ($B)'
+        }
+      })
 })

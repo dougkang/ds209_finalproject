@@ -40,6 +40,10 @@ d3.csv("data/cont_out.csv")
       return d
     })
     .sort(function(a, b) { return d3.descending(a['total'], b['total']) })
+    .map(function(d) {
+      d.label = type_mapping[d.key]
+      return d
+    })
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
