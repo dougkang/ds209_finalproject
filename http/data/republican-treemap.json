@@ -9,7 +9,7 @@
           "name": "Company #1"
         },
         {
-          "rate": 0.35092180546726004,
+          "rate": 0.45092180546726004,
           "amount": 41021,
           "value": 1021,
           "name": "Company #2"
@@ -27,19 +27,19 @@
           "name": "Company #4"
         },
         {
-          "rate": 0.234860883797054,
+          "rate": 0.242860883797054,
           "amount": 12135,
           "value": 935,
           "name": "Company #5"
         }
       ],
-      "rate": 0.348458904109589,
+      "rate": 0.448458904109589,
       "name": "Private Sector"
     },
     {
       "children": [
         {
-          "rate": 0.36470588235294116,
+          "rate": 0.46470588235294116,
           "amount": 83124,
           "value": 324,
           "name": "Organization #1"
@@ -51,13 +51,13 @@
           "name": "Organization #2"
         },
         {
-          "rate": 0.3368055555555556,
+          "rate": 0.4368055555555556,
           "amount": 125173,
           "value": 573,
           "name": "Organization #3"
         },
         {
-          "rate": 0.14285714285714285,
+          "rate": 0.54285714285714285,
           "amount": 51312,
           "value": 32,
           "name": "Organization #4"
@@ -69,7 +69,7 @@
           "name": "Organization #5"
         }
       ],
-      "rate": 0.18637048192771086,
+      "rate": 0.58637048192771086,
       "name": "Public Sector"
     },
     {
@@ -99,7 +99,7 @@
           "name": "Donor Type #4"
         },
         {
-          "rate": 0.2391304347826087,
+          "rate": 0.2391304427826087,
           "amount": 7517,
           "value": 57,
           "name": "Donor Type #5"
@@ -111,13 +111,13 @@
     {
       "children": [
         {
-          "rate": 0.39619651347068147,
+          "rate": 0.49619651427068147,
           "amount": 22517162,
           "value": 762,
           "name": "Pac #1"
         },
         {
-          "rate": 0.1719260065288357,
+          "rate": 0.5719260065288357,
           "amount": 8927161,
           "value": 761,
           "name": "Pac #2"
@@ -147,7 +147,7 @@
     {
       "children": [
         {
-          "rate": 0.3829268292682927,
+          "rate": 0.4829268292682927,
           "amount": 122153,
           "value": 253,
           "name": "Donor #1"
@@ -159,7 +159,7 @@
           "name": "Donor #2"
         },
         {
-          "rate": 0.3368421052631579,
+          "rate": 0.4368421052631579,
           "amount": 3613,
           "value": 63,
           "name": "Donor #3"
@@ -177,7 +177,7 @@
           "name": "Donor #5"
         }
       ],
-      "rate": 0.3422950819672131,
+      "rate": 0.4422950819672131,
       "name": "Individual"
     }
   ],
