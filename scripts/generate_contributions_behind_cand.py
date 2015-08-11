@@ -51,17 +51,19 @@ for year in np.unique(out_results['Cycle']):
     for cand in np.unique(out_results.loc[out_results['Cycle'] == year, 'Name']):
         temp_results = out_results[(out_results['Cycle'] == year) & (out_results['Name'] == cand)]
         temp_output = { 'name': cand,
-                        'donations': 10000,
+                        'max_donations': temp_results['Amount']['count'].max(),
+                        'min_donations': temp_results['Amount']['count'].min(),
+                        'donations': temp_results['Amount']['count'].sum(),
                         'children': [
                             {
                                 'name': 'Individual',
-                                'donations': 50000,
+                                'donations': temp_results[temp_results['Type'] == 'Individual']['Amount']['count'].sum(),
                                 'children': [
                                     ]
                             },
                             {
                                 'name': 'PACs',
-                                'donations': 1000,
+                                'donations': temp_results[temp_results['Type'] == 'PACs']['Amount']['count'].sum(),
                                 'children': [
                                     ]
                             }
@@ -83,6 +85,7 @@ for year in np.unique(out_results['Cycle']):
                 'rate': row['Amount']['<lambda>']
             }
             temp_output['children'][1]['children'].append(don)
+            
         filename = cand.lower().split('(')[0].rstrip().replace(' ', '_') + '_' + str(year() + '.json'
         with open('data/treemap/' + filename, 'w') as outfile:
             json.dump(temp_output, outfile)

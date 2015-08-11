@@ -2,7 +2,7 @@ var margin = {top: 30, right: 0, bottom: 20, left: 0},
     width = 960,
     height = 500 - margin.top - margin.bottom,
     formatNumber = d3.format(",#"),
-    colorDomain = [1000, 10000, 50000],
+    colorDomain = [1, 5000, 50000],
     colorRange = ["#FF7878", 'white', "#77DD77"],
     transitioning;
 
@@ -105,7 +105,7 @@ function initialize(root) {
   }
 
 function colorIncrements(d){
-    return (colorDomain[colorDomain.length - 1] - colorDomain[0])/18*d + colorDomain[0];
+    return (colorDomain[colorDomain.length - 1] - colorDomain[0])/5*d + colorDomain[0];
 }
 
 
@@ -124,11 +124,10 @@ candidateLegend.append("text")
 
 // determines if white or black will be better contrasting color
 function getContrast50(hexcolor){
-    return (parseInt(hexcolor.replace('#', ''), 16) > 0xffffff/3) ? 'black':'white';
+    return (parseInt(hexcolor.replace('#', ''), 16) > 0xffffff/16) ? 'black':'white';
 }
 
-d3.json("sample_obama_2008.json", function(root) {
-  console.log(root)
+d3.json("data/treemap/barack_obama_2008.json", function(root) {
   initialize(root);
   accumulate(root);
   layout(root);
@@ -173,6 +172,7 @@ d3.json("sample_obama_2008.json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
+        .attr("size", ".75em")
         .text(function(d) { return d.name; })
         .call(text);
 
