@@ -1,0 +1,222 @@
+,index,Cycle,Party,Type,Catname,Amount,Amount,Amount
+,,,,,,sum,count,<lambda>
+,,,,,,,,
+16,16,2008,D,Individual,Accident & health insurance,500,1,1.0
+17,17,2008,D,Individual,Accountants,1500,1,1.0
+18,18,2008,D,Individual,Attorneys & law firms,10000,18,0.0555555555556
+19,19,2008,D,Individual,Banks & lending institutions,312,1,1.0
+20,20,2008,D,Individual,Biotech products & research,1000,1,1.0
+21,21,2008,D,Individual,"Book, newspaper & periodical publishing",1000,1,1.0
+22,22,2008,D,Individual,Building operators and managers,4300,3,0.333333333333
+23,23,2008,D,Individual,Business services,7925,4,0.25
+24,24,2008,D,Individual,Candidate contribution to his/her own campaign,744,1,1.0
+25,25,2008,D,Individual,Cell/wireless service providers,2000,1,1.0
+26,26,2008,D,Individual,Civil servant/public employee,1100,4,0.25
+27,27,2008,D,Individual,Commercial TV & radio stations,320,1,1.0
+28,28,2008,D,Individual,Commercial banks & bank holding companies,1250,2,0.5
+29,29,2008,D,Individual,Commercial service unions,250,1,1.0
+30,30,2008,D,Individual,Communications & Electronics,500,1,1.0
+31,31,2008,D,Individual,Computer software,1000,1,1.0
+32,32,2008,D,Individual,Corporate lawyers & law firms,1000,1,1.0
+33,33,2008,D,Individual,Credit agencies & finance companies,500,1,1.0
+34,34,2008,D,Individual,Crop production & basic processing,800,2,0.5
+35,35,2008,D,Individual,Defense shipbuilders,250,1,1.0
+36,36,2008,D,Individual,Democratic/Liberal,2550,2,0.5
+37,37,2008,D,Individual,Dentists,250,1,1.0
+38,38,2008,D,Individual,"Department, variety & convenience stores",2300,1,1.0
+39,39,2008,D,Individual,Drug stores,1000,1,1.0
+40,40,2008,D,Individual,Electronics manufacturing & services,-500,2,0.5
+41,41,2008,D,Individual,Employer listed but category unknown,14350,22,0.0454545454545
+42,42,2008,D,Individual,Environmental policy,1000,1,1.0
+43,43,2008,D,Individual,"Finance, Insurance & Real Estate",5500,2,0.5
+44,44,2008,D,Individual,Financial services & consulting,1800,1,1.0
+45,45,2008,D,Individual,Gas & Electric Utilities,500,1,1.0
+46,46,2008,D,Individual,General commerce,1250,3,0.333333333333
+47,47,2008,D,Individual,HMOs,250,1,1.0
+48,48,2008,D,Individual,"Health, Education & Human Resources",987,2,0.5
+49,49,2008,D,Individual,"Homemakers, students & other non-income earners",2300,1,1.0
+50,50,2008,D,Individual,Hospitals,6000,2,0.5
+51,51,2008,D,Individual,Hotels & motels,250,1,1.0
+52,52,2008,D,Individual,Household & office products,250,1,1.0
+53,53,2008,D,Individual,Indian Gaming,2000,1,1.0
+54,54,2008,D,Individual,Industrial/commercial equipment & materials,500,1,1.0
+55,55,2008,D,Individual,"Insurance companies, brokers & agents",2000,1,1.0
+56,56,2008,D,Individual,Investment banking,1000,1,1.0
+57,57,2008,D,Individual,Life insurance,500,1,1.0
+58,58,2008,D,Individual,Lobbyists & Public Relations,6000,6,0.166666666667
+59,59,2008,D,Individual,Management consultants & services,500,1,1.0
+60,60,2008,D,Individual,Milk & dairy producers,1000,1,1.0
+61,61,2008,D,Individual,Miscellaneous retail stores,1000,1,1.0
+62,62,2008,D,Individual,No employer listed or discovered,775,2,0.5
+63,63,2008,D,Individual,Non-Profits,250,1,1.0
+64,64,2008,D,Individual,Nursing homes,2300,1,1.0
+65,65,2008,D,Individual,Other physician specialists,2000,1,1.0
+66,66,2008,D,Individual,Philanthropists,2300,1,1.0
+67,67,2008,D,Individual,Physicians,500,1,1.0
+68,68,2008,D,Individual,Private Equity & Investment Firms,2500,1,1.0
+69,69,2008,D,Individual,Pro-Israel,500,1,1.0
+70,70,2008,D,Individual,Psychiatrists & psychologists,225,1,1.0
+71,71,2008,D,Individual,Public official (elected or appointed),500,1,1.0
+72,72,2008,D,Individual,Real Estate developers & subdividers,500,1,1.0
+73,73,2008,D,Individual,Real estate,500,1,1.0
+74,74,2008,D,Individual,Real estate agents,500,1,1.0
+75,75,2008,D,Individual,Recorded Music & music production,500,1,1.0
+76,76,2008,D,Individual,Retired,12114,16,0.0625
+77,77,2008,D,Individual,Schools & colleges,4100,4,0.25
+78,78,2008,D,Individual,Security brokers & investment companies,28500,1,1.0
+79,79,2008,D,Individual,Student loan companies,500,1,1.0
+80,80,2008,D,Individual,Surveying,250,1,1.0
+81,81,2008,D,Individual,Tobacco & Tobacco products,1000,1,1.0
+82,82,2008,D,Individual,Transfer from intermediary ( type 24I or 24T),7300,16,0.0625
+83,83,2008,D,Individual,Trial lawyers & law firms,12300,2,0.5
+84,84,2008,D,Individual,Trucking companies & services,250,1,1.0
+85,85,2008,D,Individual,"Vegetables, fruits and tree nut",250,1,1.0
+86,86,2008,D,Individual,Wine & distilled spirits manufacturing,500,1,1.0
+87,87,2008,D,Individual,Women's issues,1250,4,0.25
+88,88,2008,D,PACs,Abortion policy/Pro-Abortion Rights,1500,2,0.5
+89,89,2008,D,PACs,Accident & health insurance,-4000,2,0.5
+90,90,2008,D,PACs,Accountants,6000,3,0.333333333333
+91,91,2008,D,PACs,Advertising & public relations services,4500,2,0.5
+92,92,2008,D,PACs,Agricultural chemicals (fertilizers & pesticides),1000,1,1.0
+93,93,2008,D,PACs,Air transport unions,11500,6,0.166666666667
+94,94,2008,D,PACs,Aircraft manufacturers,1000,1,1.0
+95,95,2008,D,PACs,Aircraft parts & equipment,2000,1,1.0
+96,96,2008,D,PACs,Airlines,1000,1,1.0
+97,97,2008,D,PACs,Animal feed & health products,1000,1,1.0
+98,98,2008,D,PACs,Attorneys & law firms,10141,10,0.1
+99,99,2008,D,PACs,Automotive Manufacturing union,7800,5,0.2
+100,100,2008,D,PACs,Beer,5000,1,1.0
+101,101,2008,D,PACs,Biotech products & research,1000,1,1.0
+102,102,2008,D,PACs,Building operators and managers,-1000,1,1.0
+103,103,2008,D,PACs,Building trades unions,70250,39,0.025641025641
+104,104,2008,D,PACs,Cable distributors & service providers,1000,1,1.0
+105,105,2008,D,PACs,"Casinos, racetracks & gambling",1000,1,1.0
+106,106,2008,D,PACs,Cell/wireless service providers,1000,1,1.0
+107,107,2008,D,PACs,Chiropractors,1000,1,1.0
+108,108,2008,D,PACs,Coal mining,2000,1,1.0
+109,109,2008,D,PACs,Commercial TV & radio stations,1000,1,1.0
+110,110,2008,D,PACs,Commercial banks & bank holding companies,7500,3,0.333333333333
+111,111,2008,D,PACs,Communications & hi-tech unions,20900,9,0.111111111111
+112,112,2008,D,PACs,Computer manufacture & services,89,1,1.0
+113,113,2008,D,PACs,Computer software,1000,1,1.0
+114,114,2008,D,PACs,Corporate lawyers & law firms,1255,1,1.0
+115,115,2008,D,PACs,Correctional facilities constr & mgmt/for-profit,1000,1,1.0
+116,116,2008,D,PACs,Credit agencies & finance companies,2000,2,0.5
+117,117,2008,D,PACs,Credit reporting services & collection agencies,2500,1,1.0
+118,118,2008,D,PACs,Credit unions,1000,1,1.0
+119,119,2008,D,PACs,Crop production & basic processing,3000,2,0.5
+120,120,2008,D,PACs,Data processing & computer services,2000,1,1.0
+121,121,2008,D,PACs,Defense aerospace contractors,6000,6,0.166666666667
+122,122,2008,D,PACs,Defense electronic contractors,2000,2,0.5
+123,123,2008,D,PACs,"Defense policy, doves",54,1,1.0
+124,124,2008,D,PACs,Democratic Candidate Committees,46263,39,0.025641025641
+125,125,2008,D,PACs,Democratic Joint Candidate Committee,2131,1,1.0
+126,126,2008,D,PACs,Democratic Party Committees,39401,28,0.0357142857143
+127,127,2008,D,PACs,Democratic leadership PAC,60125,35,0.0285714285714
+128,128,2008,D,PACs,"Democratic officials, candidates & former members",835,2,0.5
+129,129,2008,D,PACs,Democratic/Liberal,38311,29,0.0344827586207
+130,130,2008,D,PACs,"Department, variety & convenience stores",2000,3,0.333333333333
+131,131,2008,D,PACs,Drug stores,500,1,1.0
+132,132,2008,D,PACs,Electric Power utilities,5250,7,0.142857142857
+133,133,2008,D,PACs,Electrical contractors,1000,1,1.0
+134,134,2008,D,PACs,Employment agencies,1000,1,1.0
+135,135,2008,D,PACs,"Engineering, architecture & construction mgmt svcs",1000,1,1.0
+136,136,2008,D,PACs,Engineers - type unknown,1000,1,1.0
+137,137,2008,D,PACs,Environmental policy,2151,2,0.5
+138,138,2008,D,PACs,"Environmental services, equipment & consulting",2500,1,1.0
+139,139,2008,D,PACs,Equipment rental & leasing,1000,1,1.0
+140,140,2008,D,PACs,Explosives,500,1,1.0
+141,141,2008,D,PACs,Express delivery services,7000,4,0.25
+142,142,2008,D,PACs,Farm organizations & cooperatives,1000,1,1.0
+143,143,2008,D,PACs,Federal employees unions,7000,6,0.166666666667
+144,144,2008,D,PACs,"Finance, Insurance & Real Estate",5000,1,1.0
+145,145,2008,D,PACs,Financial services & consulting,1000,1,1.0
+146,146,2008,D,PACs,Food service & related unions,32000,8,0.125
+147,147,2008,D,PACs,Food stores,-1000,1,1.0
+148,148,2008,D,PACs,Foreign policy,1000,1,1.0
+149,149,2008,D,PACs,Forestry & Forest Products,1000,1,1.0
+150,150,2008,D,PACs,Gas & Electric Utilities,6024,6,0.166666666667
+151,151,2008,D,PACs,Gay & lesbian rights & issues,1025,2,0.5
+152,152,2008,D,PACs,General aviation (private pilots),5000,1,1.0
+153,153,2008,D,PACs,General commercial unions,-2000,1,1.0
+154,154,2008,D,PACs,HMOs,7000,2,0.5
+155,155,2008,D,PACs,Health care products,5000,1,1.0
+156,156,2008,D,PACs,Health care services,2000,3,0.333333333333
+157,157,2008,D,PACs,Home care services,250,1,1.0
+158,158,2008,D,PACs,Hospitals,7151,2,0.5
+159,159,2008,D,PACs,Hotels & motels,1500,1,1.0
+160,160,2008,D,PACs,IBEW (Intl Brotherhood of Electrical Workers),49950,21,0.047619047619
+161,161,2008,D,PACs,Independent power generation & cogeneration,400,1,1.0
+162,162,2008,D,PACs,Industrial/commercial equipment & materials,6500,3,0.333333333333
+163,163,2008,D,PACs,"Insurance companies, brokers & agents",2000,1,1.0
+164,164,2008,D,PACs,Internal Transfer and other non-contributions,209451,5,0.2
+165,165,2008,D,PACs,Labor Unions,9917,4,0.25
+166,166,2008,D,PACs,Life insurance,3500,2,0.5
+167,167,2008,D,PACs,Liquor wholesalers,3500,3,0.333333333333
+168,168,2008,D,PACs,Lobbyists & Public Relations,987,1,1.0
+169,169,2008,D,PACs,Major (multinational) oil & gas producers,2500,1,1.0
+170,170,2008,D,PACs,Manufacturing unions,27000,8,0.125
+171,171,2008,D,PACs,Medical Devices & Supplies,2000,1,1.0
+172,172,2008,D,PACs,Merchant marine & longshoremen unions,1000,1,1.0
+173,173,2008,D,PACs,Military,2000,2,0.5
+174,174,2008,D,PACs,Milk & dairy producers,2500,3,0.333333333333
+175,175,2008,D,PACs,Mining unions,4500,3,0.333333333333
+176,176,2008,D,PACs,Minority/Ethnic Groups,2885,2,0.5
+177,177,2008,D,PACs,Miscellaneous retail stores,6,2,0.5
+178,178,2008,D,PACs,Mortgage bankers and brokers,5800,3,0.333333333333
+179,179,2008,D,PACs,"Motorcycles, snowmobiles & other motorized vehicle",1600,2,0.5
+180,180,2008,D,PACs,Natural Gas transmission & distribution,500,1,1.0
+181,181,2008,D,PACs,Non-Federal candidate committees,500,1,1.0
+182,182,2008,D,PACs,Non-Profits,500,1,1.0
+183,183,2008,D,PACs,Nurses,300,1,1.0
+184,184,2008,D,PACs,Nursing homes,1000,1,1.0
+185,185,2008,D,PACs,Optometrists & Ophthalmologists,3500,3,0.333333333333
+186,186,2008,D,PACs,Other non-physician health practitioners,6000,5,0.2
+187,187,2008,D,PACs,Other physician specialists,5000,5,0.2
+188,188,2008,D,PACs,Other single-issue or ideological groups,4771,7,0.142857142857
+189,189,2008,D,PACs,Other transportation unions,9000,4,0.25
+190,190,2008,D,PACs,Outpatient health services (incl drug & alcohol),1500,1,1.0
+191,191,2008,D,PACs,Payday lenders,1000,1,1.0
+192,192,2008,D,PACs,Personal products manufacturing,1000,1,1.0
+193,193,2008,D,PACs,Pharmaceutical manufacturing,7000,5,0.2
+194,194,2008,D,PACs,Pharmaceutical wholesale,1000,1,1.0
+195,195,2008,D,PACs,Physicians,9000,5,0.2
+196,196,2008,D,PACs,"Plumbing, heating & air conditioning",2000,1,1.0
+197,197,2008,D,PACs,Police & firefighters unions & associations,4000,4,0.25
+198,198,2008,D,PACs,Power plant construction & equipment,1000,1,1.0
+199,199,2008,D,PACs,Pro-Guns,1147,2,0.5
+200,200,2008,D,PACs,Pro-Israel,6000,5,0.2
+201,201,2008,D,PACs,Property & casualty insurance,6000,3,0.333333333333
+202,202,2008,D,PACs,"Public works, industrial & commercial construction",1750,2,0.5
+203,203,2008,D,PACs,Railroad unions,4150,6,0.166666666667
+204,204,2008,D,PACs,Railroads,0,3,
+205,205,2008,D,PACs,Real Estate developers & subdividers,1500,2,0.5
+206,206,2008,D,PACs,Real estate agents,5000,1,1.0
+207,207,2008,D,PACs,Republican Candidate Committees,2000,2,0.5
+208,208,2008,D,PACs,Republican Party Committees,27800,3,0.333333333333
+209,209,2008,D,PACs,Republican leadership PAC,1851,3,0.333333333333
+210,210,2008,D,PACs,Republican/Conservative,60000,1,1.0
+211,211,2008,D,PACs,Residential construction,3000,1,1.0
+212,212,2008,D,PACs,Rural electric cooperatives,2000,1,1.0
+213,213,2008,D,PACs,Savings banks & Savings and Loans,2000,1,1.0
+214,214,2008,D,PACs,Sea freight & passenger services,500,1,1.0
+215,215,2008,D,PACs,Search Engine/Email Services,1000,1,1.0
+216,216,2008,D,PACs,Security brokers & investment companies,4500,2,0.5
+217,217,2008,D,PACs,State & local govt employee unions,14000,5,0.2
+218,218,2008,D,PACs,Steel,2500,1,1.0
+219,219,2008,D,PACs,"Stone, clay, glass & concrete products",3000,1,1.0
+220,220,2008,D,PACs,Sugar cane & sugar beets,300,1,1.0
+221,221,2008,D,PACs,Teachers unions,17000,5,0.2
+222,222,2008,D,PACs,Teamsters union,2099,7,0.142857142857
+223,223,2008,D,PACs,Telephone utilities,2000,1,1.0
+224,224,2008,D,PACs,Textiles & fabrics,-1000,1,1.0
+225,225,2008,D,PACs,Title insurance & title abstract offices,200,1,1.0
+226,226,2008,D,PACs,Transportation unions,6000,2,0.5
+227,227,2008,D,PACs,Trial lawyers & law firms,8000,2,0.5
+228,228,2008,D,PACs,Truck/Automotive parts & accessories,1000,1,1.0
+229,229,2008,D,PACs,Trucking companies & services,1000,1,1.0
+230,230,2008,D,PACs,US Postal Service unions & associations,7507,4,0.25
+231,231,2008,D,PACs,Unknown,88,1,1.0
+232,232,2008,D,PACs,Welfare & Social Work,1000,1,1.0
+233,233,2008,D,PACs,Wine & distilled spirits manufacturing,14,1,1.0
+234,234,2008,D,PACs,Women's issues,2116,5,0.2

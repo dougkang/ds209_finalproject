@@ -1,0 +1,158 @@
+,index,Cycle,Party,Type,Catname,Amount,Amount,Amount
+,,,,,,sum,count,<lambda>
+,,,,,,,,
+481,481,2012,D,Individual,Architectural services,1500,2,0.5
+482,482,2012,D,Individual,Attorneys & law firms,8757,17,0.0588235294118
+483,483,2012,D,Individual,"Auto dealers, new & used",1000,1,1.0
+484,484,2012,D,Individual,"Book, newspaper & periodical publishing",3583,5,0.2
+485,485,2012,D,Individual,Business services,500,2,0.5
+486,486,2012,D,Individual,Cable & satellite TV production,500,1,1.0
+487,487,2012,D,Individual,Candidate contribution to his/her own campaign,425,1,1.0
+488,488,2012,D,Individual,Chemicals,250,1,1.0
+489,489,2012,D,Individual,Civil servant/public employee,1500,2,0.5
+490,490,2012,D,Individual,"Construction, unclassified",1500,2,0.5
+491,491,2012,D,Individual,Corporate lawyers & law firms,250,1,1.0
+492,492,2012,D,Individual,Credit agencies & finance companies,4500,2,0.5
+493,493,2012,D,Individual,Crop production & basic processing,2500,4,0.25
+494,494,2012,D,Individual,Cruise ships & lines,1000,1,1.0
+495,495,2012,D,Individual,Data processing & computer services,500,1,1.0
+496,496,2012,D,Individual,Defense aerospace contractors,1000,1,1.0
+497,497,2012,D,Individual,Democratic/Liberal,750,3,0.333333333333
+498,498,2012,D,Individual,"Department, variety & convenience stores",1000,1,1.0
+499,499,2012,D,Individual,Employer listed but category unknown,24590,30,0.0333333333333
+500,500,2012,D,Individual,Engineers - type unknown,500,1,1.0
+501,501,2012,D,Individual,General commerce,2501,6,0.166666666667
+502,502,2012,D,Individual,"Homemakers, students & other non-income earners",2049,4,0.25
+503,503,2012,D,Individual,Hospitals,200,1,1.0
+504,504,2012,D,Individual,Investors,2300,2,0.5
+505,505,2012,D,Individual,Liquor wholesalers,2500,1,1.0
+506,506,2012,D,Individual,Livestock,500,1,1.0
+507,507,2012,D,Individual,Lobbyists & Public Relations,3500,3,0.333333333333
+508,508,2012,D,Individual,Manufacturing,500,1,1.0
+509,509,2012,D,Individual,Medical Devices & Supplies,500,1,1.0
+510,510,2012,D,Individual,Medical schools,1000,1,1.0
+511,511,2012,D,Individual,Motion Picture production & distribution,2750,2,0.5
+512,512,2012,D,Individual,No employer listed or discovered,3450,2,0.5
+513,513,2012,D,Individual,Non-profit foundations,2000,1,1.0
+514,514,2012,D,Individual,Nurses,3500,2,0.5
+515,515,2012,D,Individual,Oil & Gas,5000,1,1.0
+516,516,2012,D,Individual,Other physician specialists,250,1,1.0
+517,517,2012,D,Individual,Paper packaging materials,1250,2,0.5
+518,518,2012,D,Individual,Pharmaceutical manufacturing,2500,1,1.0
+519,519,2012,D,Individual,Physicians,2000,3,0.333333333333
+520,520,2012,D,Individual,Political consultants/advisers,500,1,1.0
+521,521,2012,D,Individual,Printing and publishing (printed & online),500,1,1.0
+522,522,2012,D,Individual,Pro-Israel,2250,3,0.333333333333
+523,523,2012,D,Individual,Psychiatrists & psychologists,5250,2,0.5
+524,524,2012,D,Individual,Real Estate developers & subdividers,3500,2,0.5
+525,525,2012,D,Individual,Real estate,3500,2,0.5
+526,526,2012,D,Individual,Real estate agents,500,1,1.0
+527,527,2012,D,Individual,Retired,10800,17,0.0588235294118
+528,528,2012,D,Individual,Satellite communications,250,1,1.0
+529,529,2012,D,Individual,Schools & colleges,1950,6,0.166666666667
+530,530,2012,D,Individual,Security brokers & investment companies,1000,1,1.0
+531,531,2012,D,Individual,Special trade contractors,218,1,1.0
+532,532,2012,D,Individual,Transfer from intermediary ( type 24I or 24T),4217,11,0.0909090909091
+533,533,2012,D,Individual,Venture capital,1000,1,1.0
+534,534,2012,D,Individual,Women's issues,2200,7,0.142857142857
+535,535,2012,D,PACs,Abortion policy/Anti-Abortion,3,2,0.5
+536,536,2012,D,PACs,Abortion policy/Pro-Abortion Rights,6000,2,0.5
+537,537,2012,D,PACs,Accident & health insurance,3700,3,0.333333333333
+538,538,2012,D,PACs,Agricultural services & related industries,1000,1,1.0
+539,539,2012,D,PACs,Air transport unions,7500,2,0.5
+540,540,2012,D,PACs,Alternate energy production & services,1000,1,1.0
+541,541,2012,D,PACs,Animal Rights,19952,1,1.0
+542,542,2012,D,PACs,Anti-Castro,5000,1,1.0
+543,543,2012,D,PACs,Apparel & accessory stores,250,1,1.0
+544,544,2012,D,PACs,Architectural services,5000,1,1.0
+545,545,2012,D,PACs,Attorneys & law firms,8500,6,0.166666666667
+546,546,2012,D,PACs,"Auto dealers, new & used",4000,2,0.5
+547,547,2012,D,PACs,Automotive Manufacturing union,18500,5,0.2
+548,548,2012,D,PACs,Banks & lending institutions,2500,1,1.0
+549,549,2012,D,PACs,Biotech products & research,500,1,1.0
+550,550,2012,D,PACs,Building operators and managers,5000,1,1.0
+551,551,2012,D,PACs,Building trades unions,110750,40,0.025
+552,552,2012,D,PACs,"Casinos, racetracks & gambling",2500,1,1.0
+553,553,2012,D,PACs,Chiropractors,1000,1,1.0
+554,554,2012,D,PACs,Commercial banks & bank holding companies,6300,6,0.166666666667
+555,555,2012,D,PACs,Commercial service unions,2500,1,1.0
+556,556,2012,D,PACs,Communications & hi-tech unions,14500,6,0.166666666667
+557,557,2012,D,PACs,Cruise ships & lines,-1000,1,1.0
+558,558,2012,D,PACs,Defense electronic contractors,5000,1,1.0
+559,559,2012,D,PACs,"Defense policy, doves",121,5,0.2
+560,560,2012,D,PACs,Democratic Candidate Committees,34580,33,0.030303030303
+561,561,2012,D,PACs,Democratic Party Committees,83040,39,0.025641025641
+562,562,2012,D,PACs,Democratic leadership PAC,51820,23,0.0434782608696
+563,563,2012,D,PACs,"Democratic officials, candidates & former members",500,1,1.0
+564,564,2012,D,PACs,Democratic/Liberal,8790,16,0.0625
+565,565,2012,D,PACs,"Department, variety & convenience stores",2500,1,1.0
+566,566,2012,D,PACs,Elderly issues/Social Security,1000,1,1.0
+567,567,2012,D,PACs,Electric Power utilities,5450,4,0.25
+568,568,2012,D,PACs,Energy-related unions (non-mining),2000,1,1.0
+569,569,2012,D,PACs,"Engineering, architecture & construction mgmt svcs",3500,4,0.25
+570,570,2012,D,PACs,Entertainment unions,500,1,1.0
+571,571,2012,D,PACs,Environmental policy,124,2,0.5
+572,572,2012,D,PACs,Express delivery services,5000,1,1.0
+573,573,2012,D,PACs,Federal employees unions,2000,2,0.5
+574,574,2012,D,PACs,Food service & related unions,2191,5,0.2
+575,575,2012,D,PACs,For-profit Education,1000,1,1.0
+576,576,2012,D,PACs,Foreign policy,2500,1,1.0
+577,577,2012,D,PACs,Forestry & Forest Products,1000,1,1.0
+578,578,2012,D,PACs,General commercial unions,5000,1,1.0
+579,579,2012,D,PACs,Health & welfare policy,26,1,1.0
+580,580,2012,D,PACs,Hospitals,4000,2,0.5
+581,581,2012,D,PACs,Hotels & motels,-2000,2,0.5
+582,582,2012,D,PACs,IBEW (Intl Brotherhood of Electrical Workers),39100,16,0.0625
+583,583,2012,D,PACs,Indian Gaming,3500,2,0.5
+584,584,2012,D,PACs,"Insurance companies, brokers & agents",4500,3,0.333333333333
+585,585,2012,D,PACs,Internal Transfer and other non-contributions,49607,12,0.0833333333333
+586,586,2012,D,PACs,Labor Unions,1000,1,1.0
+587,587,2012,D,PACs,Life insurance,1000,1,1.0
+588,588,2012,D,PACs,Livestock,250,1,1.0
+589,589,2012,D,PACs,Lobbyists & Public Relations,1500,1,1.0
+590,590,2012,D,PACs,Manufacturing unions,34517,9,0.111111111111
+591,591,2012,D,PACs,Medical Devices & Supplies,5000,1,1.0
+592,592,2012,D,PACs,Merchant marine & longshoremen unions,6500,5,0.2
+593,593,2012,D,PACs,Milk & dairy producers,1000,1,1.0
+594,594,2012,D,PACs,Minority/Ethnic Groups,18250,6,0.166666666667
+595,595,2012,D,PACs,"Motorcycles, snowmobiles & other motorized vehicle",1000,2,0.5
+596,596,2012,D,PACs,Non-Profits,500,1,1.0
+597,597,2012,D,PACs,Nurses,1000,1,1.0
+598,598,2012,D,PACs,Nursing homes,4500,2,0.5
+599,599,2012,D,PACs,"Oilfield service, equipment & exploration",1000,1,1.0
+600,600,2012,D,PACs,Optometrists & Ophthalmologists,2500,1,1.0
+601,601,2012,D,PACs,Other financial services,500,1,1.0
+602,602,2012,D,PACs,Other non-physician health practitioners,1000,1,1.0
+603,603,2012,D,PACs,Other physician specialists,7500,2,0.5
+604,604,2012,D,PACs,Other single-issue or ideological groups,8250,6,0.166666666667
+605,605,2012,D,PACs,Other transportation unions,7000,3,0.333333333333
+606,606,2012,D,PACs,Other unions,-3500,2,0.5
+607,607,2012,D,PACs,Outpatient health services (incl drug & alcohol),100,1,1.0
+608,608,2012,D,PACs,Pharmaceutical manufacturing,1500,3,0.333333333333
+609,609,2012,D,PACs,Pharmaceutical wholesale,5000,1,1.0
+610,610,2012,D,PACs,Physicians,2500,1,1.0
+611,611,2012,D,PACs,Police & firefighters unions & associations,10000,2,0.5
+612,612,2012,D,PACs,Pro-Guns,92,1,1.0
+613,613,2012,D,PACs,Pro-Israel,2500,1,1.0
+614,614,2012,D,PACs,Property & casualty insurance,-2000,1,1.0
+615,615,2012,D,PACs,"Public works, industrial & commercial construction",1500,2,0.5
+616,616,2012,D,PACs,Railroad unions,3600,4,0.25
+617,617,2012,D,PACs,Real Estate developers & subdividers,0,2,
+618,618,2012,D,PACs,Republican Candidate Committees,3000,2,0.5
+619,619,2012,D,PACs,Republican leadership PAC,2500,1,1.0
+620,620,2012,D,PACs,Republican/Conservative,200,1,1.0
+621,621,2012,D,PACs,Restaurants & drinking establishments,2000,1,1.0
+622,622,2012,D,PACs,Retail trade,2500,1,1.0
+623,623,2012,D,PACs,Savings banks & Savings and Loans,1000,1,1.0
+624,624,2012,D,PACs,Sea freight & passenger services,2500,1,1.0
+625,625,2012,D,PACs,State & local govt employee unions,14207,7,0.142857142857
+626,626,2012,D,PACs,Teachers unions,11121,4,0.25
+627,627,2012,D,PACs,Teamsters union,15000,6,0.166666666667
+628,628,2012,D,PACs,Telephone utilities,1000,1,1.0
+629,629,2012,D,PACs,Third-Party Candidate Committees,760,1,1.0
+630,630,2012,D,PACs,Third-Party Party Committees,350,1,1.0
+631,631,2012,D,PACs,Transportation unions,10000,2,0.5
+632,632,2012,D,PACs,Trial lawyers & law firms,7500,5,0.2
+633,633,2012,D,PACs,US Postal Service unions & associations,2000,2,0.5
+634,634,2012,D,PACs,Waste management,1000,3,0.333333333333
+635,635,2012,D,PACs,Women's issues,2985,6,0.166666666667
