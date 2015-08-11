@@ -45,22 +45,23 @@ out_results = out.groupby(['Cycle', 'Name', 'Type', 'Industry', 'Catname'], as_i
                         'Amount': [np.sum, 'count', lambda x: 1.0 * np.mean(x) / np.sum(x)]
                     }).reset_index()
 # out_results.loc['Catname'] = out_results.Catname.str.replace('/', ' ')
+out_results = out_results.fillna(0.0)
 
 for year in np.unique(out_results['Cycle']):
     for cand in np.unique(out_results.loc[out_results['Cycle'] == year, 'Name']):
         temp_results = out_results[(out_results['Cycle'] == year) & (out_results['Name'] == cand)]
         temp_output = { 'name': cand,
-                        'rate': 0.35,
+                        'donations': 10000,
                         'children': [
                             {
                                 'name': 'Individual',
-                                'rate': 0.9,
+                                'donations': 50000,
                                 'children': [
                                     ]
                             },
                             {
                                 'name': 'PACs',
-                                'rate': 0.1,
+                                'donations': 1000,
                                 'children': [
                                     ]
                             }
@@ -85,4 +86,3 @@ for year in np.unique(out_results['Cycle']):
         filename = cand.lower().split('(')[0].rstrip().replace(' ', '_') + '_' + str(year() + '.json'
         with open('data/treemap/' + filename, 'w') as outfile:
             json.dump(temp_output, outfile)
-

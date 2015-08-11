@@ -1,8 +1,8 @@
 var margin = {top: 30, right: 0, bottom: 20, left: 0},
     width = 960,
     height = 500 - margin.top - margin.bottom,
-    formatNumber = d3.format(",%"),
-    colorDomain = [0, .3, 1.0],
+    formatNumber = d3.format(",#"),
+    colorDomain = [1000, 10000, 50000],
     colorRange = ["#FF7878", 'white', "#77DD77"],
     transitioning;
 
@@ -141,11 +141,11 @@ d3.json("sample_obama_2008.json", function(root) {
       .select("text")
         .text(name(d))
 
-    // color header based on candidateGrandparent's rate
+    // color header based on candidateGrandparent's donations
     candidateGrandparent
       .datum(d.parent)
       .select("rect")
-      .attr("fill", function(){console.log(color(d.rate)); return color(d['rate'])})
+      .attr("fill", function(){console.log(color(d.donations)); return color(d['donations'])})
 
     var g1 = svgCandidate.insert("g", ".candidateGrandparent")
         .datum(d)
@@ -169,7 +169,7 @@ d3.json("sample_obama_2008.json", function(root) {
         .attr("class", "parent")
         .call(rect)
       .append("title")
-        .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Number of Donations: ' + d.value + ', percent change: ' + formatNumber(d.rate); });
+        .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Amount donated ($): ' + d.value + ', Number of Donations (#): ' + d.donations; });
 
     g.append("text")
         .attr("dy", ".75em")
@@ -216,7 +216,7 @@ d3.json("sample_obama_2008.json", function(root) {
   function text(text) {
     text.attr("x", function(d) { return x(d.x) + 6; })
         .attr("y", function(d) { return y(d.y) + 6; })
-        .attr("fill", function (d) {return getContrast50(color(parseFloat(d.rate)))});
+        .attr("fill", function (d) {return getContrast50(color(parseFloat(d.donations)))});
   }
 
   function rect(rect) {
@@ -224,7 +224,7 @@ d3.json("sample_obama_2008.json", function(root) {
         .attr("y", function(d) { return y(d.y); })
         .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
         .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-        .attr("fill", function(d){return color(parseFloat(d.rate));});
+        .attr("fill", function(d){return color(parseFloat(d.donations));});
   }
 
   function name(d) {
