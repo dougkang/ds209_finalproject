@@ -2,21 +2,23 @@ import pandas as pd
 
 # Since we only care about the data per industry, let's group by industry
 ic = pd.read_csv("out/indivs.csv", error_bad_lines=False)
-ic = ic.loc[ic['Cycle'].astype(int) % 4 == 0, ['Cycle', 'RecipID', 'Orgname', 'RealCode', 'Amount']]
+ic = ic.loc[ic['Cycle'].astype(int) % 4 == 0, ['Cycle', 'RecipID', 'Orgname', 'Amount']]
 ic['Count'] = 1
-ic['RealCode'] = map(lambda x: x[0], ic['RealCode'])
-ic = ic.groupby([ "Cycle", "RecipID", "Orgname", "RealCode"]).sum().reset_index()
+ic = ic.groupby([ "Cycle", "RecipID", "Orgname"]).sum().reset_index()
 ic = ic.loc[ic['Cycle'] != 2016]
 
 # Combine candidates and committees into one superlist of entities
 c = pd.read_csv("out/cands.csv", error_bad_lines=False)
-c = c.loc[c["DistIDRunFor"] == "PRES", [ "CID", "FirstLastP", "Party", "RecipCode" ]]
-c.columns = [ "EntityId", "Name", "Party", "RecipCode" ]
+c = c.loc[c["DistIDRunFor"] == "PRES", [ "CID", "FirstLastP", "Party" ]]
+c.columns = [ "EntityId", "Name", "Party" ]
+c["RealCode"] = "?"
 c["Destination"] = "Cand"
 
 p = pd.read_csv("out/cmtes.csv", error_bad_lines=False)
-p = p.loc[:, [ "CmteID", "PACShort", "Party", "RecipCode", "PrimCode" ]]
-p.columns = [ "EntityId", "Name", "Party", "RecipCode", "PrimCode" ]
+p = p.loc[:, [ "CmteID", "PACShort", "Party", "PrimCode" ]]
+p['RealCode'] = map(lambda x: x[0], p['PrimCode'].astype(str))
+p = p.loc[:, [ "CmteID", "PACShort", "Party", "RealCode" ]]
+p.columns = [ "EntityId", "Name", "Party", "RealCode" ]
 p["Destination"] = "Cmte"
 
 ent = pd.concat([c, p]).drop_duplicates(["EntityId"])

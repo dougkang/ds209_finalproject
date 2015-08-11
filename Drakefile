@@ -60,9 +60,15 @@ out/count_out.csv <- out/indivs.csv, out/cands.csv, out/cmtes.csv
 out/pac_out.csv <- out/pacs.csv
   python scripts/merge_pac.py 
 
-%run <- out/cont_out.csv, out/count_out.csv, out/pac_out.csv, out/categories.csv
+out/cont_pacs_out.csv <- out/indivs.csv, out/cmtes.csv
+  python scripts/merge_contributions_pacs.py 
+
+out/cont_bush_out.csv <- out/indivs.csv, out/cands.csv
+  python scripts/merge_contributions_bush.py 
+
+%run <- out/cont_out.csv, out/count_out.csv, out/pac_out.csv, out/cont_pacs_out.csv, out/cont_bush_out.csv, out/categories.csv
   mkdir -p http/data 
-  cp $INPUT0 $INPUT1 $INPUT2 $INPUT3 http/data/
+  cp $INPUT0 $INPUT1 $INPUT2 $INPUT3 $INPUT4 $INPUT5 http/data/
   cd http
   python -m SimpleHTTPServer
 

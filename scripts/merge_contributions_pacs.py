@@ -2,16 +2,18 @@ import pandas as pd
 
 # Since we only care about the data per industry, let's group by industry
 ic = pd.read_csv("out/indivs.csv", error_bad_lines=False)
-ic = ic.loc[ic['Cycle'] % 4 == 0, ['Cycle', 'RecipID', 'Orgname', 'RealCode', 'Amount']]
+ic = ic.loc[ic['Cycle'] % 4 == 0, ['Cycle', 'RecipID', 'Orgname', 'Amount']]
 ic['Count'] = 1
-ic['Bucket'] = pd.cut(ic['Amount'], bins = [ 0, 500, 1000, 2500, 30000, ic['Amount'].max() ], \
-                      labels = [ "a", "b", "c", "d", "e" ])
-ic = ic.groupby([ "Cycle", "RecipID", "Orgname", "RealCode", "Bucket" ]).sum().reset_index()
+ic['Bucket'] = pd.cut(ic['Amount'], bins = [ 0, 500, 1000, 2600, ic['Amount'].max() ], \
+                      labels = [ "a", "b", "c", "d" ])
+ic = ic.groupby([ "Cycle", "RecipID", "Orgname", "Bucket" ]).sum().reset_index()
 ic = ic.loc[ic['Cycle'] != 2016]
 
 p = pd.read_csv("out/cmtes.csv", error_bad_lines=False)
-p = p.loc[p["CmteID"] == p["FECCandID"]:, [ "CmteID", "PACShort", "RecipCode", "PrimCode" ]]
-p.columns = [ "EntityId", "Name", "RecipCode", "PrimCode" ]
+p = p.loc[:, [ "CmteID", "PACShort", "RecipCode", "PrimCode" ]]
+p["PrimCode"] = p["PrimCode"].astype(str)
+p.columns = [ "EntityId", "Name", "RecipCode", "RealCode" ]
+p['RealCode'] = map(lambda x: x[0], p['RealCode'])
 p = p.drop_duplicates(["EntityId"])
 
 out = ic.merge(p, left_on = [ 'RecipID' ], right_on = [ 'EntityId' ], how = 'inner')

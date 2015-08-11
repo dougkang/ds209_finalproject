@@ -38,7 +38,7 @@ d3.csv("data/cont_pacs_out.csv")
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
-    var fig = draw_stacked_area(d3.select('#per_pac'), nested, cycles, [ 'a', 'b', 'c', 'd', 'e' ],
+    var fig = draw_stacked_area(d3.select('#per_pac'), nested, cycles, [ 'a', 'b', 'c', 'd' ],
         825, 900,
         { 
           top: {

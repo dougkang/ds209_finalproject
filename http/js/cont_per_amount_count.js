@@ -29,7 +29,7 @@ d3.csv("data/count_out.csv")
 
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
-    draw_stacked_area(d3.select('#per_amount_count'), nested, cycles, [ 'a', 'b', 'c', 'd', 'e' ],
+    draw_stacked_area(d3.select('#per_amount_count'), nested, cycles, [ 'a', 'b', 'c', 'd' ],
       825, 450,
       { 
         top: {
