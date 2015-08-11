@@ -127,7 +127,7 @@ function getContrast50(hexcolor){
     return (parseInt(hexcolor.replace('#', ''), 16) > 0xffffff/3) ? 'black':'white';
 }
 
-d3.json("./data/candidate-treemap.json", function(root) {
+d3.json("sample_obama_2008.json", function(root) {
   console.log(root)
   initialize(root);
   accumulate(root);
