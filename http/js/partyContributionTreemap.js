@@ -197,7 +197,7 @@ d3.json("./data/democrat-treemap.json", function(root) {
         .attr("class", "parent")
         .call(rect)
       .append("title")
-        .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Number of Donations: ' + d.value + ', percent change: ' + formatNumber(d.rate); });
+        .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Dollars Donated ($): ' + d.value + ', Percentage of Overall Contribution (%): ' + formatNumber(d.rate); });
 
     g.append("text")
         .attr("dy", ".75em")
@@ -305,7 +305,7 @@ d3.json("./data/republican-treemap.json", function(root) {
         .attr("class", "parent")
         .call(rect)
       .append("title")
-        .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Number of Donations: ' + d.value + ', percent change: ' + formatNumber(d.rate); });
+        .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Dollars Donated ($): ' + d.value + ', Percentage of Overall Contribution (%): ' + formatNumber(d.rate); });
 
     g.append("text")
         .attr("dy", ".75em")

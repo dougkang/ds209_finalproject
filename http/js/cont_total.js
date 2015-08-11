@@ -1,4 +1,4 @@
-d3.csv("data/ic_org.csv")
+d3.csv("data/cont_out.csv")
   .row(function(d, i) { 
     return { 
       'Amount': parseInt(d['Amount']),
