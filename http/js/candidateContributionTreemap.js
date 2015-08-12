@@ -1,5 +1,5 @@
 var margin = {top: 30, right: 0, bottom: 20, left: 0},
-    width = 960,
+    width = 840,
     height = 500 - margin.top - margin.bottom,
     formatNumber = d3.format(",#"),
     colorDomain = [1, 5000, 50000],
@@ -247,14 +247,14 @@ d3.select('#opts')
       initialize(root);
       accumulate(root);
       layout(root);
-      displayCandidate(root);
+      displayCandidateNew(root);
 
-      function displayCandidate(d) {
+      function displayCandidateNew(d) {
         candidateGrandparent
             .datum(d.parent)
-            .on("click", transitionCandidate)
+            .on("click", transitionCandidateNew)
           .select("text")
-            .text(name(d))
+            .text(nameNew(d))
 
         // color header based on candidateGrandparent's donations
         candidateGrandparent
@@ -272,17 +272,17 @@ d3.select('#opts')
 
         g.filter(function(d) { return d._children; })
             .classed("children", true)
-            .on("click", transitionCandidate);
+            .on("click", transitionCandidateNew);
 
         g.selectAll(".child")
             .data(function(d) { return d._children || [d]; })
           .enter().append("rect")
             .attr("class", "child")
-            .call(rect);
+            .call(rectNew);
 
         g.append("rect")
             .attr("class", "parent")
-            .call(rect)
+            .call(rectNew)
           .append("title")
             .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Amount donated ($): ' + d.value + ', Number of Donations (#): ' + d.donations; });
 
@@ -290,13 +290,13 @@ d3.select('#opts')
             .attr("dy", ".75em")
             .attr("size", ".75em")
             .text(function(d) { return d.name; })
-            .call(text);
+            .call(textNew);
 
-        function transitionCandidate(d) {
+        function transitionCandidateNew(d) {
           if (transitioning || !d) return;
           transitioning = true;
 
-          var g2 = displayCandidate(d),
+          var g2 = displayCandidateNew(d),
               t1 = g1.transition().duration(750),
               t2 = g2.transition().duration(750);
 
@@ -314,10 +314,10 @@ d3.select('#opts')
           g2.selectAll("text").style("fill-opacity", 0);
 
           // Transition to the new view.
-          t1.selectAll("text").call(text).style("fill-opacity", 0);
-          t2.selectAll("text").call(text).style("fill-opacity", 1);
-          t1.selectAll("rect").call(rect);
-          t2.selectAll("rect").call(rect);
+          t1.selectAll("text").call(textNew).style("fill-opacity", 0);
+          t2.selectAll("text").call(textNew).style("fill-opacity", 1);
+          t1.selectAll("rect").call(rectNew);
+          t2.selectAll("rect").call(rectNew);
 
           // Remove the old node when the transition is finished.
           t1.remove().each("end", function() {
@@ -329,13 +329,13 @@ d3.select('#opts')
         return g;
       }
 
-      function text(text) {
+      function textNew(text) {
         text.attr("x", function(d) { return x(d.x) + 6; })
             .attr("y", function(d) { return y(d.y) + 6; })
             .attr("fill", function (d) {return getContrast50(color(parseFloat(d.donations)))});
       }
 
-      function rect(rect) {
+      function rectNew(rect) {
         rect.attr("x", function(d) { return x(d.x); })
             .attr("y", function(d) { return y(d.y); })
             .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
@@ -343,9 +343,9 @@ d3.select('#opts')
             .attr("fill", function(d){return color(parseFloat(d.donations));});
       }
 
-      function name(d) {
+      function nameNew(d) {
         return d.parent
-            ? name(d.parent) + "." + d.name
+            ? nameNew(d.parent) + "." + d.name
             : d.name;
       }
 
