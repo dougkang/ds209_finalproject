@@ -237,3 +237,120 @@ d3.json("data/treemap/barack_obama_2008.json", function(root) {
 
 
 });
+
+// handle on click event
+d3.select('#opts')
+  .on('change', function() {
+    var newData = "data/treemap/" + d3.select(this).property('value').toString();
+    console.log(newData);
+    d3.json(newData, function(root) {
+      initialize(root);
+      accumulate(root);
+      layout(root);
+      displayCandidate(root);
+
+      function displayCandidate(d) {
+        candidateGrandparent
+            .datum(d.parent)
+            .on("click", transitionCandidate)
+          .select("text")
+            .text(name(d))
+
+        // color header based on candidateGrandparent's donations
+        candidateGrandparent
+          .datum(d.parent)
+          .select("rect")
+          .attr("fill", function(){console.log(color(d.donations)); return color(d['donations'])})
+
+        var g1 = svgCandidate.insert("g", ".candidateGrandparent")
+            .datum(d)
+            .attr("class", "depth");
+
+        var g = g1.selectAll("g")
+            .data(d._children)
+          .enter().append("g");
+
+        g.filter(function(d) { return d._children; })
+            .classed("children", true)
+            .on("click", transitionCandidate);
+
+        g.selectAll(".child")
+            .data(function(d) { return d._children || [d]; })
+          .enter().append("rect")
+            .attr("class", "child")
+            .call(rect);
+
+        g.append("rect")
+            .attr("class", "parent")
+            .call(rect)
+          .append("title")
+            .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Amount donated ($): ' + d.value + ', Number of Donations (#): ' + d.donations; });
+
+        g.append("text")
+            .attr("dy", ".75em")
+            .attr("size", ".75em")
+            .text(function(d) { return d.name; })
+            .call(text);
+
+        function transitionCandidate(d) {
+          if (transitioning || !d) return;
+          transitioning = true;
+
+          var g2 = displayCandidate(d),
+              t1 = g1.transition().duration(750),
+              t2 = g2.transition().duration(750);
+
+          // Update the domain only after entering new elements.
+          x.domain([d.x, d.x + d.dx]);
+          y.domain([d.y, d.y + d.dy]);
+
+          // Enable anti-aliasing during the transition.
+          svgCandidate.style("shape-rendering", null);
+
+          // Draw child nodes on top of parent nodes.
+          svgCandidate.selectAll(".depth").sort(function(a, b) { return a.depth - b.depth; });
+
+          // Fade-in entering text.
+          g2.selectAll("text").style("fill-opacity", 0);
+
+          // Transition to the new view.
+          t1.selectAll("text").call(text).style("fill-opacity", 0);
+          t2.selectAll("text").call(text).style("fill-opacity", 1);
+          t1.selectAll("rect").call(rect);
+          t2.selectAll("rect").call(rect);
+
+          // Remove the old node when the transition is finished.
+          t1.remove().each("end", function() {
+            svgCandidate.style("shape-rendering", "crispEdges");
+            transitioning = false;
+          });
+        }
+
+        return g;
+      }
+
+      function text(text) {
+        text.attr("x", function(d) { return x(d.x) + 6; })
+            .attr("y", function(d) { return y(d.y) + 6; })
+            .attr("fill", function (d) {return getContrast50(color(parseFloat(d.donations)))});
+      }
+
+      function rect(rect) {
+        rect.attr("x", function(d) { return x(d.x); })
+            .attr("y", function(d) { return y(d.y); })
+            .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
+            .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
+            .attr("fill", function(d){return color(parseFloat(d.donations));});
+      }
+
+      function name(d) {
+        return d.parent
+            ? name(d.parent) + "." + d.name
+            : d.name;
+      }
+
+
+
+
+    });
+});
