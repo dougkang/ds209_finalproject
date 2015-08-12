@@ -1,24 +1,25 @@
+import simplejson
 import numpy as np
 import pandas as pd
 
 
 # Since we only care about the data per industry, let's group by industry
-ic = pd.read_csv("./data/indivs.sample.csv", error_bad_lines=False)
-ic = ic.loc[(ic["Cycle"] == 2008) | (ic["Cycle"] == 2012), ['Cycle', 'RecipID', 'Orgname', 'RealCode', 'Amount']]
-# ic = ic.groupby([ "Cycle", "RecipID", "Orgname", "RealCode" ]).sum().reset_index()
+ic = pd.read_csv("data/indivs.csv", error_bad_lines=False)
+ic = ic.loc[((ic["Cycle"] == 1992) | (ic["Cycle"] == 1996) | (ic["Cycle"] == 2000) | (ic["Cycle"] == 2004) | (ic["Cycle"] == 2008) | (ic["Cycle"] == 2012) | (ic["Cycle"] == 2016)), ['Cycle', 'RecipID', 'Orgname', 'Contrib', 'RealCode', 'Amount']]
 ic["Type"] = "Individual"
 
 # Combine candidates and committees into one superlist of entities
 c = pd.read_csv("data/cands.csv", error_bad_lines=False)
-	c = c.loc[(c["Cycle"] == 2008) | (c["Cycle"] == 2012), [ "Cycle", "CID", "FirstLastP", "Party", "RecipCode" ]]
+c = c.loc[(c["DistIDRunFor"] == "PRES"), :]
+c = c.loc[((c["Cycle"] == 1992) | (c["Cycle"] == 1996) | (c["Cycle"] == 2000) | (c["Cycle"] == 2004) | (c["Cycle"] == 2008) | (c["Cycle"] == 2012) | (c["Cycle"] == 2016)), [ "Cycle", "CID", "FirstLastP", "Party", "RecipCode" ]]
 c.columns = [ "Cycle", "EntityId", "Name", "Party", "RecipCode" ]
 
 p = pd.read_csv("data/cmtes.csv", error_bad_lines=False)
-p = p.loc[(p["Cycle"] == 2008) | (p["Cycle"] == 2012), [ "Cycle", "CmteID", "PACShort", "Party", "RecipCode", "PrimCode" ]]
+p = p.loc[((p["Cycle"] == 1992) | (p["Cycle"] == 1996) | (p["Cycle"] == 2000) | (p["Cycle"] == 2004) | (p["Cycle"] == 2008) | (p["Cycle"] == 2012) | (p["Cycle"] == 2016)), [ "Cycle", "CmteID", "PACShort", "Party", "RecipCode", "PrimCode" ]]
 p.columns = [ "Cycle", "EntityId", "Name", "Party", "RecipCode", "PrimCode" ]
 
 a = pd.read_csv("data/pacs.csv", error_bad_lines=False)
-a = a.loc[(a["Cycle"] == 2008) | (a["Cycle"] == 2012), [ "Cycle", "PACID", "CID", "RealCode", "Amount"]]
+a = a.loc[((a["Cycle"] == 1992) | (a["Cycle"] == 1996) | (a["Cycle"] == 2000) | (a["Cycle"] == 2004) | (a["Cycle"] == 2008) | (a["Cycle"] == 2012) | (a["Cycle"] == 2016)), [ "Cycle", "PACID", "CID", "RealCode", "Amount" ]]
 a.columns = [ "Cycle", "PACID", "EntityId", "RealCode", "Amount"]
 a["Type"] = "PACs"
 
@@ -26,51 +27,65 @@ g = pd.read_csv("data/categories_updated.csv", error_bad_lines=False)
 
 ent = pd.concat([c, p]).drop_duplicates(["EntityId"])
 
+ic = ic.loc[ic.RecipID.isin(np.unique(c["EntityId"])),:]
+# ic.to_csv("ic.csv")
+# ic = ic.read_csv('ic.csv')
+
 ic = ic.merge(ent, left_on = [ 'RecipID' ], right_on = [ 'EntityId' ], how = 'inner')
 a = a.merge(ent, left_on = [ 'EntityId' ], right_on = [ 'EntityId' ], how = 'inner')
 
-out = pd.concat([ic, a]).drop_duplicates(["EntityId"])
-out = out.merge(g, left_on = [ 'RealCode' ], right_on = [ 'Catcode' ], how = 'inner')
-out = out.loc[:, [ "Cycle_x", "Orgname", "RealCode", "Amount", "EntityId", "Name", "Party", "PrimCode", "RecipCode", "Type", "Grouping", "Catgroup", "Sectorlong", "Industry", "Catname"]]
-out.columns = [ "Cycle", "Orgname", "RealCode", "Amount", "EntityId", "Name", "Party", "PrimCode", "RecipCode", "Type", "Grouping", "Catgroup", "Sectorlong", "Industry", "Catname" ]
+ic.loc[:, 'Name'] = ic['Name_x']
 
-out = out.loc[out['Cycle'] % 4 == 0, :]
-out_results = out.groupby(['Cycle', 'Party', 'Type', 'Name'], as_index=False).agg({
-						'Amount': [np.sum, 'count', lambda x: 1.0 * np.mean(x) / np.sum(x)]
-					}).reset_index()
+out = pd.concat([ic, a])
+out = out.merge(g, left_on = [ 'RealCode' ], right_on = [ 'Catcode' ], how = 'left')
+out = out.loc[:, [ "Cycle_x", "Orgname", "RealCode", "Amount", "EntityId", "Name", "Party", "PrimCode", "RecipCode", "Type", "Grouping", "Catgroup", "Sectorlong", "Industry", "Catname", "Contrib"]]
+out.columns = [ "Cycle", "Orgname", "RealCode", "Amount", "EntityId", "Name", "Party", "PrimCode", "RecipCode", "Type", "Grouping", "Catgroup", "Sectorlong", "Industry", "Catname","Contrib" ]
 
-# full_out = out.merge(temp, on = ['Cycle', 'Orgname'], how = 'inner')
-# out_grouped = out.groupby(['Party', 'Grouping', 'Sectorlong', 'Industry', 'Orgname'])
-# out_results = out_grouped.agg({
-#						'Cycle': np.mean,
-#						'Amount': [np.sum, 'count', lambda x: 1.0 * np.mean(x) / np.sum(x)]
-#					})
+out_results = out.groupby(['Cycle', 'Name', 'Type', 'Industry', 'Catname'], as_index=False).agg({
+                        'Amount': [np.sum, 'count', lambda x: 1.0 * np.mean(x) / np.sum(x)]
+                    }).reset_index()
+# out_results.loc['Catname'] = out_results.Catname.str.replace('/', ' ')
+out_results = out_results.fillna(0.0)
 
-# dem_results = out_results.apply(lambda x: x['Party'] == 'D')
-# rep_results = out_results.apply(lambda x: x['Party'] == 'R')
-
-dem_results = out_results[out_results['Party'] == 'D']
-rep_results = out_results[out_results['Party'] == 'R']
-
-# dem_2008_results = dem_results.apply(lambda x: x['Cycle'] == '2008')
-# dem_2012_results = dem_results.apply(lambda x: x['Cycle'] == '2012')
-dem_2008_results = dem_results[dem_results['Cycle'] == 2008]
-dem_2012_results = dem_results[dem_results['Cycle'] == 2012]
-
-# rep_2008_results = rep_results.apply(lambda x: x['Cycle'] == '2008')
-# rep_2012_results = rep_results.apply(lambda x: x['Cycle'] == '2012')
-rep_2008_results = rep_results[rep_results['Cycle'] == 2008]
-rep_2012_results = rep_results[rep_results['Cycle'] == 2012]
-
-# group by Catgroup, Orgname
-dem_2008_results.loc[dem_2008_results['Amount']['<lambda>'] != 1]
-dem_2012_results.loc[dem_2012_results['Amount']['<lambda>'] != 1]
-
-rep_2008_results.loc[rep_2008_results['Amount']['<lambda>'] != 1]
-rep_2012_results.loc[rep_2012_results['Amount']['<lambda>'] != 1]
-
-dem_2008_results.to_csv("data/dem_2008_results.csv")
-dem_2012_results.to_csv("data/dem_2012_results.csv")
-
-rep_2008_results.to_csv("data/rep_2008_results.csv")
-rep_2012_results.to_csv("data/rep_2012_results.csv")
+for year in np.unique(out_results['Cycle']):
+    for cand in np.unique(out_results.loc[out_results['Cycle'] == year, 'Name']):
+        temp_results = out_results[(out_results['Cycle'] == year) & (out_results['Name'] == cand)]
+        temp_output = { 'name': cand,
+                        'max_donations': temp_results['Amount']['count'].max(),
+                        'min_donations': temp_results['Amount']['count'].min(),
+                        'donations': temp_results['Amount']['count'].sum(),
+                        'children': [
+                            {
+                                'name': 'Individual',
+                                'donations': temp_results[temp_results['Type'] == 'Individual']['Amount']['count'].sum(),
+                                'children': [
+                                    ]
+                            },
+                            {
+                                'name': 'PACs',
+                                'donations': temp_results[temp_results['Type'] == 'PACs']['Amount']['count'].sum(),
+                                'children': [
+                                    ]
+                            }
+                        ]
+                    }
+        for i, row in temp_results[temp_results['Type'] == 'Individual'].iterrows():
+            don = {
+                'name': row['Catname'].values[0],
+                'value': row['Amount']['sum'],
+                'donations': row['Amount']['count'],
+                'rate': row['Amount']['<lambda>']
+            }
+            temp_output['children'][0]['children'].append(don)
+        for i, row in temp_results[temp_results['Type'] == 'PACs'].iterrows():
+            don = {
+                'name': row['Catname'].values[0],
+                'value': row['Amount']['sum'],
+                'donations': row['Amount']['count'],
+                'rate': row['Amount']['<lambda>']
+            }
+            temp_output['children'][1]['children'].append(don)
+            
+        filename = cand.lower().split('(')[0].rstrip().replace(' ', '_') + '_' + str(year() + '.json'
+        with open('data/treemap/' + filename, 'w') as outfile:
+            json.dump(temp_output, outfile)

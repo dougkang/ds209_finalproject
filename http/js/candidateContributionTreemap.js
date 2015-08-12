@@ -1,8 +1,8 @@
 var margin = {top: 30, right: 0, bottom: 20, left: 0},
-    width = 960,
+    width = 840,
     height = 500 - margin.top - margin.bottom,
-    formatNumber = d3.format(",%"),
-    colorDomain = [0, .3, 1.0],
+    formatNumber = d3.format(",#"),
+    colorDomain = [1, 5000, 50000],
     colorRange = ["#FF7878", 'white', "#77DD77"],
     transitioning;
 
@@ -105,7 +105,7 @@ function initialize(root) {
   }
 
 function colorIncrements(d){
-    return (colorDomain[colorDomain.length - 1] - colorDomain[0])/18*d + colorDomain[0];
+    return (colorDomain[colorDomain.length - 1] - colorDomain[0])/5*d + colorDomain[0];
 }
 
 
@@ -124,11 +124,10 @@ candidateLegend.append("text")
 
 // determines if white or black will be better contrasting color
 function getContrast50(hexcolor){
-    return (parseInt(hexcolor.replace('#', ''), 16) > 0xffffff/3) ? 'black':'white';
+    return (parseInt(hexcolor.replace('#', ''), 16) > 0xffffff/16) ? 'black':'white';
 }
 
-d3.json("./data/candidate-treemap.json", function(root) {
-  console.log(root)
+d3.json("data/treemap/barack_obama_2008.json", function(root) {
   initialize(root);
   accumulate(root);
   layout(root);
@@ -141,11 +140,11 @@ d3.json("./data/candidate-treemap.json", function(root) {
       .select("text")
         .text(name(d))
 
-    // color header based on candidateGrandparent's rate
+    // color header based on candidateGrandparent's donations
     candidateGrandparent
       .datum(d.parent)
       .select("rect")
-      .attr("fill", function(){console.log(color(d.rate)); return color(d['rate'])})
+      .attr("fill", function(){console.log(color(d.donations)); return color(d['donations'])})
 
     var g1 = svgCandidate.insert("g", ".candidateGrandparent")
         .datum(d)
@@ -169,10 +168,11 @@ d3.json("./data/candidate-treemap.json", function(root) {
         .attr("class", "parent")
         .call(rect)
       .append("title")
-        .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Number of Donations: ' + d.value + ', percent change: ' + formatNumber(d.rate); });
+        .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Amount donated ($): ' + d.value + ', Number of Donations (#): ' + d.donations; });
 
     g.append("text")
         .attr("dy", ".75em")
+        .attr("size", ".75em")
         .text(function(d) { return d.name; })
         .call(text);
 
@@ -216,7 +216,7 @@ d3.json("./data/candidate-treemap.json", function(root) {
   function text(text) {
     text.attr("x", function(d) { return x(d.x) + 6; })
         .attr("y", function(d) { return y(d.y) + 6; })
-        .attr("fill", function (d) {return getContrast50(color(parseFloat(d.rate)))});
+        .attr("fill", function (d) {return getContrast50(color(parseFloat(d.donations)))});
   }
 
   function rect(rect) {
@@ -224,7 +224,7 @@ d3.json("./data/candidate-treemap.json", function(root) {
         .attr("y", function(d) { return y(d.y); })
         .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
         .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-        .attr("fill", function(d){return color(parseFloat(d.rate));});
+        .attr("fill", function(d){return color(parseFloat(d.donations));});
   }
 
   function name(d) {
@@ -236,4 +236,121 @@ d3.json("./data/candidate-treemap.json", function(root) {
 
 
 
+});
+
+// handle on click event
+d3.select('#opts')
+  .on('change', function() {
+    var newData = "data/treemap/" + d3.select(this).property('value').toString();
+    console.log(newData);
+    d3.json(newData, function(root) {
+      initialize(root);
+      accumulate(root);
+      layout(root);
+      displayCandidateNew(root);
+
+      function displayCandidateNew(d) {
+        candidateGrandparent
+            .datum(d.parent)
+            .on("click", transitionCandidateNew)
+          .select("text")
+            .text(nameNew(d))
+
+        // color header based on candidateGrandparent's donations
+        candidateGrandparent
+          .datum(d.parent)
+          .select("rect")
+          .attr("fill", function(){console.log(color(d.donations)); return color(d['donations'])})
+
+        var g1 = svgCandidate.insert("g", ".candidateGrandparent")
+            .datum(d)
+            .attr("class", "depth");
+
+        var g = g1.selectAll("g")
+            .data(d._children)
+          .enter().append("g");
+
+        g.filter(function(d) { return d._children; })
+            .classed("children", true)
+            .on("click", transitionCandidateNew);
+
+        g.selectAll(".child")
+            .data(function(d) { return d._children || [d]; })
+          .enter().append("rect")
+            .attr("class", "child")
+            .call(rectNew);
+
+        g.append("rect")
+            .attr("class", "parent")
+            .call(rectNew)
+          .append("title")
+            .text(function(d) {console.log(typeof(d.value), d.value); return d.name + ', Amount donated ($): ' + d.value + ', Number of Donations (#): ' + d.donations; });
+
+        g.append("text")
+            .attr("dy", ".75em")
+            .attr("size", ".75em")
+            .text(function(d) { return d.name; })
+            .call(textNew);
+
+        function transitionCandidateNew(d) {
+          if (transitioning || !d) return;
+          transitioning = true;
+
+          var g2 = displayCandidateNew(d),
+              t1 = g1.transition().duration(750),
+              t2 = g2.transition().duration(750);
+
+          // Update the domain only after entering new elements.
+          x.domain([d.x, d.x + d.dx]);
+          y.domain([d.y, d.y + d.dy]);
+
+          // Enable anti-aliasing during the transition.
+          svgCandidate.style("shape-rendering", null);
+
+          // Draw child nodes on top of parent nodes.
+          svgCandidate.selectAll(".depth").sort(function(a, b) { return a.depth - b.depth; });
+
+          // Fade-in entering text.
+          g2.selectAll("text").style("fill-opacity", 0);
+
+          // Transition to the new view.
+          t1.selectAll("text").call(textNew).style("fill-opacity", 0);
+          t2.selectAll("text").call(textNew).style("fill-opacity", 1);
+          t1.selectAll("rect").call(rectNew);
+          t2.selectAll("rect").call(rectNew);
+
+          // Remove the old node when the transition is finished.
+          t1.remove().each("end", function() {
+            svgCandidate.style("shape-rendering", "crispEdges");
+            transitioning = false;
+          });
+        }
+
+        return g;
+      }
+
+      function textNew(text) {
+        text.attr("x", function(d) { return x(d.x) + 6; })
+            .attr("y", function(d) { return y(d.y) + 6; })
+            .attr("fill", function (d) {return getContrast50(color(parseFloat(d.donations)))});
+      }
+
+      function rectNew(rect) {
+        rect.attr("x", function(d) { return x(d.x); })
+            .attr("y", function(d) { return y(d.y); })
+            .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
+            .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
+            .attr("fill", function(d){return color(parseFloat(d.donations));});
+      }
+
+      function nameNew(d) {
+        return d.parent
+            ? nameNew(d.parent) + "." + d.name
+            : d.name;
+      }
+
+
+
+
+    });
 });

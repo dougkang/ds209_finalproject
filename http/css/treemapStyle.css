@@ -53,21 +53,3 @@ rect.parent,
   font-family: sans-serif;
   fill: black;
 }
-
-#party-contribution-treemap {
-  position: relative;
-}
-.comparison-treemap {
-  display: inline;
-}
-
-.comparison-spacing {
-  display: inline;
-  margin-left: 20px;
-  margin-right: 20px;
-  top: -50px;
-}
-
-.comparison-spacing {
-  top: -50%;
-}

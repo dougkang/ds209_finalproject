@@ -1,0 +1,1 @@
+{"donations": 1000, "name": "Bob Dole (R)", "children": [{"donations": 50000, "name": "Individual", "children": []}, {"donations": 1000, "name": "PACs", "children": [{"rate": 0.5, "donations": 2, "name": "Internal Transfer and other non-contributions", "value": 100000}, {"rate": 0.5, "donations": 2, "name": "Republican Party Committees", "value": 264561}]}]}
