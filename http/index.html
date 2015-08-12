@@ -183,51 +183,135 @@
           <hr>
         </div>
       </div>
+      
       <div class="row">
         <div class="col-md-12">
-          <h2>Who is Standing Behind your Party?</h2>
+          <h2>Who is Standing Behind your Candidate? (WIP)</h2>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p>Lorem ipsum delorum.
+          <p>See who is supporting your favorite candidates. The size of the blocks represent the dollars donated and the collor indicates the number of donations. A block with fewer donations will appear red and a block with more donations will appear green.
           </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div id="party-contribution-treemap">
-            <p id="democrat-chart" class="comparison-treemap"></p>
-            <p class="comparison-spacing"> VS. </p>
-            <p id="republican-chart" class="comparison-treemap"></p>
-            <h3 style="font-weight: bold">Percentage of donor's total poltical contributions</h3>
-            <div id="legend"></div>
-          </div> <!-- end of div#party-contribution-treemap -->
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <hr>
+          <br>
+          <select id = "opts">
+            <option value="al_gore_1992.json">al_gore_1992</option>
+            <option value="al_gore_1996.json">al_gore_1996</option>
+            <option value="al_gore_2000.json">al_gore_2000</option>
+            <option value="al_gore_2004.json">al_gore_2004</option>
+            <option value="al_gore_2008.json">al_gore_2008</option>
+            <option value="barack_obama_2000.json">barack_obama_2000</option>
+            <option value="barack_obama_2004.json">barack_obama_2004</option>
+            <option value="barack_obama_2008.json" selected="selected">barack_obama_2008</option>
+            <option value="barack_obama_2012.json">barack_obama_2012</option>
+            <option value="bernie_sanders_1992.json">bernie_sanders_1992</option>
+            <option value="bernie_sanders_1996.json">bernie_sanders_1996</option>
+            <option value="bernie_sanders_2000.json">bernie_sanders_2000</option>
+            <option value="bernie_sanders_2004.json">bernie_sanders_2004</option>
+            <option value="bernie_sanders_2008.json">bernie_sanders_2008</option>
+            <option value="bernie_sanders_2012.json">bernie_sanders_2012</option>
+            <option value="bernie_sanders_2016.json">bernie_sanders_2016</option>
+            <option value="bill_bradley_1992.json">bill_bradley_1992</option>
+            <option value="bill_bradley_2000.json">bill_bradley_2000</option>
+            <option value="bill_bradley_2004.json">bill_bradley_2004</option>
+            <option value="bill_clinton_1992.json">bill_clinton_1992</option>
+            <option value="bill_clinton_1996.json">bill_clinton_1996</option>
+            <option value="carly_fiorina_2012.json">carly_fiorina_2012</option>
+            <option value="carly_fiorina_2016.json">carly_fiorina_2016</option>
+            <option value="george_bush_1992.json">george_bush_1992</option>
+            <option value="george_bush_1996.json">george_bush_1996</option>
+            <option value="george_w_bush_2000.json">george_w_bush_2000</option>
+            <option value="george_w_bush_2004.json">george_w_bush_2004</option>
+            <option value="george_w_bush_2008.json">george_w_bush_2008</option>
+            <option value="herman_cain_2004.json">herman_cain_2004</option>
+            <option value="herman_cain_2008.json">herman_cain_2008</option>
+            <option value="herman_cain_2012.json">herman_cain_2012</option>
+            <option value="herman_cain_2016.json">herman_cain_2016</option>
+            <option value="hillary_clinton_2000.json">hillary_clinton_2000</option>
+            <option value="hillary_clinton_2004.json">hillary_clinton_2004</option>
+            <option value="hillary_clinton_2008.json">hillary_clinton_2008</option>
+            <option value="hillary_clinton_2012.json">hillary_clinton_2012</option>
+            <option value="jesse_jackson_1992.json">jesse_jackson_1992</option>
+            <option value="jesse_jackson_1996.json">jesse_jackson_1996</option>
+            <option value="jesse_jackson_2000.json">jesse_jackson_2000</option>
+            <option value="john_edwards_2000.json">john_edwards_2000</option>
+            <option value="john_edwards_2004.json">john_edwards_2004</option>
+            <option value="john_edwards_2008.json">john_edwards_2008</option>
+            <option value="john_edwards_2012.json">john_edwards_2012</option>
+            <option value="john_kerry_1992.json">john_kerry_1992</option>
+            <option value="john_kerry_1996.json">john_kerry_1996</option>
+            <option value="john_kerry_2000.json">john_kerry_2000</option>
+            <option value="john_kerry_2004.json">john_kerry_2004</option>
+            <option value="john_kerry_2008.json">john_kerry_2008</option>
+            <option value="john_kerry_2012.json">john_kerry_2012</option>
+            <option value="john_mccain_1992.json">john_mccain_1992</option>
+            <option value="john_mccain_1996.json">john_mccain_1996</option>
+            <option value="john_mccain_2000.json">john_mccain_2000</option>
+            <option value="john_mccain_2004.json">john_mccain_2004</option>
+            <option value="john_mccain_2008.json">john_mccain_2008</option>
+            <option value="john_mccain_2012.json">john_mccain_2012</option>
+            <option value="john_mccain_2016.json">john_mccain_2016</option>
+            <option value="joseph_r_biden_jr_1992.json">joseph_r_biden_jr_1992</option>
+            <option value="joseph_r_biden_jr_1996.json">joseph_r_biden_jr_1996</option>
+            <option value="joseph_r_biden_jr_2000.json">joseph_r_biden_jr_2000</option>
+            <option value="joseph_r_biden_jr_2004.json">joseph_r_biden_jr_2004</option>
+            <option value="joseph_r_biden_jr_2008.json">joseph_r_biden_jr_2008</option>
+            <option value="lindsey_graham_1996.json">lindsey_graham_1996</option>
+            <option value="lindsey_graham_2000.json">lindsey_graham_2000</option>
+            <option value="lindsey_graham_2004.json">lindsey_graham_2004</option>
+            <option value="lindsey_graham_2008.json">lindsey_graham_2008</option>
+            <option value="lindsey_graham_2012.json">lindsey_graham_2012</option>
+            <option value="lindsey_graham_2016.json">lindsey_graham_2016</option>
+            <option value="marco_rubio_2016.json">marco_rubio_2016</option>
+            <option value="mike_huckabee_1992.json">mike_huckabee_1992</option>
+            <option value="mike_huckabee_1996.json">mike_huckabee_1996</option>
+            <option value="mike_huckabee_2000.json">mike_huckabee_2000</option>
+            <option value="mike_huckabee_2008.json">mike_huckabee_2008</option>
+            <option value="mitt_romney_1996.json">mitt_romney_1996</option>
+            <option value="mitt_romney_2008.json">mitt_romney_2008</option>
+            <option value="mitt_romney_2012.json">mitt_romney_2012</option>
+            <option value="mitt_romney_2016.json">mitt_romney_2016</option>
+            <option value="newt_gingrich_1992.json">newt_gingrich_1992</option>
+            <option value="newt_gingrich_1996.json">newt_gingrich_1996</option>
+            <option value="newt_gingrich_2000.json">newt_gingrich_2000</option>
+            <option value="newt_gingrich_2012.json">newt_gingrich_2012</option>
+            <option value="ralph_nader_1996.json">ralph_nader_1996</option>
+            <option value="ralph_nader_2000.json">ralph_nader_2000</option>
+            <option value="ralph_nader_2004.json">ralph_nader_2004</option>
+            <option value="ralph_nader_2008.json">ralph_nader_2008</option>
+            <option value="rand_paul_2012.json">rand_paul_2012</option>
+            <option value="rand_paul_2016.json">rand_paul_2016</option>
+            <option value="rick_perry_2012.json">rick_perry_2012</option>
+            <option value="rick_santorum_2000.json">rick_santorum_2000</option>
+            <option value="rick_santorum_2004.json">rick_santorum_2004</option>
+            <option value="rick_santorum_2008.json">rick_santorum_2008</option>
+            <option value="rick_santorum_2012.json">rick_santorum_2012</option>
+            <option value="ron_paul_1996.json">ron_paul_1996</option>
+            <option value="ron_paul_2000.json">ron_paul_2000</option>
+            <option value="ron_paul_2004.json">ron_paul_2004</option>
+            <option value="ron_paul_2008.json">ron_paul_2008</option>
+            <option value="ron_paul_2012.json">ron_paul_2012</option>
+            <option value="ross_perot_1992.json">ross_perot_1992</option>
+            <option value="ross_perot_1996.json">ross_perot_1996</option>
+            <option value="ross_perot_2000.json">ross_perot_2000</option>
+            <option value="rudolph_w_giuliani_2000.json">rudolph_w_giuliani_2000</option>
+            <option value="rudolph_w_giuliani_2004.json">rudolph_w_giuliani_2004</option>
+            <option value="rudolph_w_giuliani_2008.json">rudolph_w_giuliani_2008</option>
+            <option value="rudolph_w_giuliani_2012.json">rudolph_w_giuliani_2012</option>
+            <option value="ted_cruz_2016.json">ted_cruz_2016</option>
+
+          </select>  
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-12">
-          <h2>Who is Standing Behind your Candidate?</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <p>Lorem ipsum delorum.
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
           <div id="candidate-contribution-treemap">
             <p id="candidate-chart"></p>
+            <!--
             <h3 style="font-weight: bold">Percentage of donor's total poltical contributions</h3>
             <div id="candidate-legend"></div>
+            -->
           </div> <!-- end of div#candidate-contribution-treemap -->
         </div>
       </div>
