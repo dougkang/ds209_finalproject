@@ -4,6 +4,7 @@
     <link rel="stylesheet" style="text/css" href="css/d3.slider.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
     <link rel="stylesheet" style="text/css" href="css/style.css" />
     <link rel="stylesheet" style="text/css" href="css/treemapStyle.css" />
   </head>
@@ -23,7 +24,9 @@
       <div class="row">
         <div class="col-md-12">
           <p>With the coming 2016 election, it is important for us to be aware of what could be
-          driving our future president's decisions.  One major motivator in politics is money.</p>
+          driving our future president's decisions.  One major motivator in politics is money. <b>To avoid corruption of our officials, special limits on contributions exist 
+            to ensure that a single person or entity does not contribute a majority of a candidate's 
+            funds.</b></p>
         </div>
       </div>
       <div class="row">
@@ -34,9 +37,6 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p><b>To avoid corruption of our officials, special limits on contributions are put in place 
-            to ensure that a single person or entity does not contribute a majority of a candidate's 
-            funds.</b></p>
           <p>Since the turn of the 20th century, two landmark events have forcefully
           changed the United States's campaign financing landscape.  The <em>2000 Presidential 
             Election</em> showed that it was possible to raise large amounts of funds without the 
@@ -66,7 +66,6 @@
             <li><b>Individuals</b> (e.g. you)</li>
             <li>The <b>Federal Election Committee</b> (FEC), if the candidate stays under specific spending limits</li>
           </ol>
-          <p>Individuals can only directly donate a maximum of <b>$2,600</b> to a candidate.</p>
           <hr>
           <h3>Instructions</h3>
           <p>To the right, we can see where donors are sending their money during each presidential cycle and how it changes over time.</p>
@@ -78,7 +77,7 @@
           section marked on the graph.</p>
         </div>
         <div class="col-md-6">
-          <h3>Donor Destinations from 1992-2012</h3>
+          <h3>Campaign Funding Sources from 1992-2012</h3>
           <div id="per_type"></div>
         </div>
       </div>
@@ -118,8 +117,7 @@
         <div class="col-md-12">
           <h2>Citizens United v. Federal Election Committee</h2>
           <p>With candidates having to raise more money to keep from being left behind, candidates 
-          looked to PACs to augment their warchests.  In the 2008 election, candidates used loophole, 
-          using independent expenditure PACs, to bypass contribution limits and quickly raise campaign funds.
+          looked to PACs to augment their warchests.  In the 2008 election, candidates used independent expenditure PACs to bypass contribution limits and quickly raise campaign funds.
           </p>
           <p>In 2010, the Supreme Court supported this practice by ruling that the prohibition 
           of all independent expenditures violated the First Amendment.  <b>As long as PACs do not 
@@ -143,18 +141,18 @@
       <div class="row">
         <div class="col-md-12">
           <p>While online donating has made it easier than ever for candidates to reach the masses,
-          it is more efficient to land the proverbial big fish. To bypass contribution limits, candidates 
-          are looking increasingly to PACs.</p>
+          it is more efficient to land the proverbial big fish. To bypass contribution limits, wealthy
+          donors and candidates are looking increasingly to PACs.</p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p>While the number of contributions &lt;$500 has increased significantly, these
+          <p>While the number of contributions less than $1000 has increased significantly, these
           contributions are making up less and less of the overall fundraising landscape.
           </p>
-          <p>On the other hand, contributions over $2600 (over the individual contribution limit)
-          has increased from 37% to 50% of all contributions.
-          </p>
+          <p><b>Contributions under $1000 have dropped dramatically since 1992,
+            from contributing 57% of all campaign donations to 27% in just 10 years.
+          </b></p>
         </div>
         <div class="col-md-6">
           <h3>Percentage Total Contribution by Donation Amount</h3>
@@ -167,9 +165,19 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p>The issue at hand is simply that PACs <em>have no limit to individual contributions and spending</em>.  As a result, wealthy individuals are using PACs to circumvent contribution limits that were put in place to prevent corruption.</p>
+          <ul>
+            <li class="small"><b>Note:</b> The individual contribution limit is $2,600</li>
+            <li class="small"><b>Note:</b> The spike in contributions over $2,600 in 2000 is due to Forbes 
+            self-financing his campaign.  There are no limits to donating to one's self.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p>The issue at hand is simply that PACs <em>have no limit to individual contributions and spending</em>.  </p>
+          <p><b>Wealthy individuals are using PACs to circumvent contribution limits that were put in place to prevent corruption.</b></p>
           <p>The graph below shows contribution amounts to PACs.  We see a dramatic increase 
-          in contributions to PACs &gt;$2600 from 2008 onwards.</p>
+          in contributions to PACs greater than $2600 after the 2010 ruling.</p>
         </div>
       </div>
       <div class="row">
@@ -324,14 +332,13 @@
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-    <script src="js/d3.slider.js"></script>
+    <script src="js/d3.tip.js"></script>
     <script src="js/mappings.js"></script>
     <script src="js/stacked_area.js"></script>
     <script src="js/area.js"></script>
     <script src="js/bar.js"></script>
     <script src="js/cont_total.js"></script>
     <script src="js/cont_per_type.js"></script>
-    <script src="js/pac_spending_sector.js"></script>
     <script src="js/cont_pacs_out.js"></script>
     <script src="js/cont_per_cand.js"></script>
     <script src="js/cont_per_amount.js"></script>

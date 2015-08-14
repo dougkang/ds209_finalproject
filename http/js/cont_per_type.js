@@ -46,7 +46,7 @@ d3.csv("data/cont_out.csv")
     var cycles = data.map(function(d) { return d3.format("02")(d['Cycle'] % 100) }) 
 
     draw_stacked_area(d3.select('#per_type'), nested, cycles, [ 'Cmte', 'Cand', 'Party' ],
-        900, 490,
+        750, 490,
         { 
           top: {
             x_label: 'Year',

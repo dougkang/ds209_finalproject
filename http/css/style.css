@@ -30,6 +30,10 @@ body {
   overflow: scroll;
 }
 
+.point {
+  opacity: 0.0;
+}
+
 .area {
   stroke-width: 0px;
   opacity: 0.8;
@@ -65,12 +69,12 @@ body {
 
 .y.axis .tick line {
   stroke: #111;
-  opacity: 0.2;
+  opacity: 0.3;
 }
 
 .top .x.axis .tick line {
   stroke: #111;
-  opacity: 0.2;
+  opacity: 0.3;
 }
 
 .hotspot {

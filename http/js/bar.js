@@ -3,8 +3,13 @@ function draw_bar(viz, data, xs, height, width, options) {
   var _main = {}
   var _all = {}
 
+  _main.tip = d3.tip()
+    .attr('class', 'd3-tip n')
+    .offset([-10, 0])
+    .html(function(d) { return "$" + d3.format(".2f")(d.values) + 'M' })
+
   _all.xs = xs
-  _all.color_scale = d3.scale.category20()
+  _all.color_scale = d3.scale.category10()
   _all.data = data
     .sort(function(a, b) { return d3.descending(a.values, b.values) })
 
@@ -16,6 +21,8 @@ function draw_bar(viz, data, xs, height, width, options) {
     .append("svg")
       .attr("height", _main.height)
       .attr("width", _main.width)
+
+  _main.fig.call(_main.tip)
 
   _main.x_scale = d3.scale.ordinal()
     .domain(_all.xs)
@@ -77,6 +84,8 @@ function draw_bar(viz, data, xs, height, width, options) {
             .attr("y", function(d) { return _main.y_scale(d.values) })
             .attr("height", function(d) { return _main.height - _main.margin.bottom - _main.y_scale(d.values) })
             .attr('fill', function(d) { return _all.color_scale(d.key) })
+            .on('mouseover', _main.tip.show)
+            .on('mouseout', _main.tip.hide)
 
   return _main
 }
