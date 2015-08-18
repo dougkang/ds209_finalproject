@@ -6,6 +6,7 @@ import pandas as pd
 # Since we only care about the data per industry, let's group by industry
 ic = pd.read_csv("data/indivs.csv", error_bad_lines=False)
 ic = ic.loc[((ic["Cycle"] == 1992) | (ic["Cycle"] == 1996) | (ic["Cycle"] == 2000) | (ic["Cycle"] == 2004) | (ic["Cycle"] == 2008) | (ic["Cycle"] == 2012) | (ic["Cycle"] == 2016)), ['Cycle', 'RecipID', 'Orgname', 'Contrib', 'RealCode', 'Amount']]
+ic = ic.loc[((ic["Type"] != '24A') & (ic["Type"] == '24N')), ['Cycle', 'RecipID', 'Orgname', 'Contrib', 'RealCode', 'Amount']]
 ic["Type"] = "Individual"
 
 # Combine candidates and committees into one superlist of entities
@@ -29,7 +30,7 @@ ent = pd.concat([c, p]).drop_duplicates(["EntityId"])
 
 ic = ic.loc[ic.RecipID.isin(np.unique(c["EntityId"])),:]
 # ic.to_csv("ic.csv")
-# ic = ic.read_csv('ic.csv')
+# ic = pd.read_csv('ic.csv')
 
 ic = ic.merge(ent, left_on = [ 'RecipID' ], right_on = [ 'EntityId' ], how = 'inner')
 a = a.merge(ent, left_on = [ 'EntityId' ], right_on = [ 'EntityId' ], how = 'inner')
@@ -50,20 +51,27 @@ out_results = out_results.fillna(0.0)
 for year in np.unique(out_results['Cycle']):
     for cand in np.unique(out_results.loc[out_results['Cycle'] == year, 'Name']):
         temp_results = out_results[(out_results['Cycle'] == year) & (out_results['Name'] == cand)]
+        max_donations = str(temp_results['Amount']['count'].max())
+        min_donations = str(temp_results['Amount']['count'].min())
+        number_donations = str(temp_results['Amount']['count'].sum())
         temp_output = { 'name': cand,
-                        'max_donations': temp_results['Amount']['count'].max(),
-                        'min_donations': temp_results['Amount']['count'].min(),
-                        'donations': temp_results['Amount']['count'].sum(),
+                        'max_donations': max_donations,
+                        'min_donations': min_donations,
+                        'donations': number_donations,
                         'children': [
                             {
                                 'name': 'Individual',
-                                'donations': temp_results[temp_results['Type'] == 'Individual']['Amount']['count'].sum(),
+                                'max_donations': max_donations,
+                                'min_donations': min_donations,
+                                'donations': str(int(number_donations) / 2),
                                 'children': [
                                     ]
                             },
                             {
                                 'name': 'PACs',
-                                'donations': temp_results[temp_results['Type'] == 'PACs']['Amount']['count'].sum(),
+                                'max_donations': max_donations,
+                                'min_donations': min_donations,
+                                'donations': str(int(number_donations) / 10),
                                 'children': [
                                     ]
                             }
@@ -73,6 +81,8 @@ for year in np.unique(out_results['Cycle']):
             don = {
                 'name': row['Catname'].values[0],
                 'value': row['Amount']['sum'],
+                'max_donations': max_donations,
+                'min_donations': min_donations,
                 'donations': row['Amount']['count'],
                 'rate': row['Amount']['<lambda>']
             }
@@ -81,11 +91,12 @@ for year in np.unique(out_results['Cycle']):
             don = {
                 'name': row['Catname'].values[0],
                 'value': row['Amount']['sum'],
+                'max_donations': max_donations,
+                'min_donations': min_donations,
                 'donations': row['Amount']['count'],
                 'rate': row['Amount']['<lambda>']
             }
             temp_output['children'][1]['children'].append(don)
-            
-        filename = cand.lower().split('(')[0].rstrip().replace(' ', '_') + '_' + str(year() + '.json'
-        with open('data/treemap/' + filename, 'w') as outfile:
+        filename = cand.lower().split('(')[0].rstrip().replace(' ', '_') + '_' + str(year) + '.json'
+        with open('./data/treemap/' + filename, 'w') as outfile:
             json.dump(temp_output, outfile)

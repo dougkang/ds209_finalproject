@@ -2,7 +2,7 @@ var margin = {top: 30, right: 0, bottom: 20, left: 0},
     width = 840,
     height = 500 - margin.top - margin.bottom,
     formatNumber = d3.format(",#"),
-    colorDomain = [1, 5000, 50000],
+    colorDomain = [1, 3000, 50000],
     colorRange = ["#FF7878", 'white', "#77DD77"],
     transitioning;
 
@@ -172,8 +172,8 @@ d3.json("data/treemap/barack_obama_2008.json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
-        .attr("size", ".75em")
-        .text(function(d) { return d.name; })
+        .attr("font-size", function(d) {return Math.min(1, (1.5 * d.donations / d.max_donations)).toString() + "em";})
+        .text(function(d) { if (d.donations / d.max_donations > 0.05) {return d.name;} else {return "";} })
         .call(text);
 
     function transitionCandidate(d) {
@@ -244,6 +244,34 @@ d3.select('#opts')
     var newData = "data/treemap/" + d3.select(this).property('value').toString();
     console.log(newData);
     d3.json(newData, function(root) {
+      d3.select("#candidate-chart").selectAll("*").remove();
+      var candidateTreemap = d3.layout.treemap()
+          .children(function(d, depth) { return depth ? null : d._children; })
+          .sort(function(a, b) { return a.value - b.value; })
+          .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
+          .round(false);
+
+      var svgCandidate = d3.select("#candidate-chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.bottom + margin.top)
+          .style("margin-left", -margin.left + "px")
+          .style("margin.right", -margin.right + "px")
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+          .style("shape-rendering", "crispEdges");
+
+      var candidateGrandparent = svgCandidate.append("g")
+          .attr("class", "candidateGrandparent");
+
+      candidateGrandparent.append("rect")
+          .attr("y", -margin.top)
+          .attr("width", width)
+          .attr("height", margin.top);
+
+      candidateGrandparent.append("text")
+          .attr("x", 6)
+          .attr("y", 6 - margin.top)
+          .attr("dy", ".75em");
       initialize(root);
       accumulate(root);
       layout(root);
@@ -256,7 +284,7 @@ d3.select('#opts')
           .select("text")
             .text(nameNew(d))
 
-        // color header based on candidateGrandparent's donations
+          // color header based on candidateGrandparent's donations
         candidateGrandparent
           .datum(d.parent)
           .select("rect")
@@ -289,7 +317,7 @@ d3.select('#opts')
         g.append("text")
             .attr("dy", ".75em")
             .attr("size", ".75em")
-            .text(function(d) { return d.name; })
+            .text(function(d) { if (d.donations / d.max_donations > 0.05) {return d.name;} else {return "";} })
             .call(textNew);
 
         function transitionCandidateNew(d) {
