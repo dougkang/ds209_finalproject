@@ -53,3 +53,7 @@ rect.parent,
   font-family: sans-serif;
   fill: black;
 }
+
+#opts {
+  text-transform: capitalize;
+}
