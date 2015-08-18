@@ -2,7 +2,7 @@ var margin = {top: 30, right: 0, bottom: 20, left: 0},
     width = 840,
     height = 500 - margin.top - margin.bottom,
     formatNumber = d3.format(",#"),
-    colorDomain = [1, 3000, 50000, 100000000],
+    colorDomain = [1, 5000, 50000, 100000000],
     colorRange = ["#FF7878", 'white', "#77DD77", "#77DD77"],
     transitioning;
 
@@ -127,7 +127,7 @@ function getContrast50(hexcolor){
     return (parseInt(hexcolor.replace('#', ''), 16) > 0xffffff/16) ? 'black':'white';
 }
 
-d3.json("data/treemap/barack_obama_2008.0.json", function(root) {
+d3.json("data/treemap/barack_obama_2008.json", function(root) {
   initialize(root);
   accumulate(root);
   layout(root);
@@ -172,10 +172,10 @@ d3.json("data/treemap/barack_obama_2008.0.json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
-        .attr("font-size", function(d) {return Math.min(1.4, (6 * d.value / d.group_sum)).toString() + "em";})
+        .attr("font-size", function(d) {return Math.min(1.4, (6 * d.value / d.max_sum)).toString() + "em";})
         .text(function(d) {
-          if (d.value / d.group_sum > 0.05) {
-            if (d.value / d.group_sum > 0.1) {
+          if (d.value / d.max_sum > 0.05) {
+            if (d.value / d.group_sum > 0.08) {
               return d.name
             } else {
               if (d.name.length > 12) {
@@ -236,7 +236,7 @@ d3.json("data/treemap/barack_obama_2008.0.json", function(root) {
         .attr("y", function(d) { return y(d.y); })
         .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
         .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-        .attr("fill", function(d){return color(parseFloat(d.donations));});
+        .attr("fill", function(d){return color(parseFloat(d.donations) / 2.5);});
   }
 
   function name(d) {
@@ -396,7 +396,7 @@ d3.select('#opts')
             .attr("y", function(d) { return y(d.y); })
             .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
             .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-            .attr("fill", function(d){return color(parseFloat(d.donations));});
+            .attr("fill", function(d){return color(parseFloat(d.donations) / 2.5);});
       }
 
       function nameNew(d) {
