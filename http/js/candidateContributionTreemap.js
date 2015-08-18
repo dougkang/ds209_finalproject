@@ -2,8 +2,8 @@ var margin = {top: 30, right: 0, bottom: 20, left: 0},
     width = 840,
     height = 500 - margin.top - margin.bottom,
     formatNumber = d3.format(",#"),
-    colorDomain = [1, 3000, 50000],
-    colorRange = ["#FF7878", 'white', "#77DD77"],
+    colorDomain = [1, 3000, 50000, 100000000],
+    colorRange = ["#FF7878", 'white', "#77DD77", "#77DD77"],
     transitioning;
 
 // sets x and y scale to determine size of visible boxes
@@ -127,7 +127,7 @@ function getContrast50(hexcolor){
     return (parseInt(hexcolor.replace('#', ''), 16) > 0xffffff/16) ? 'black':'white';
 }
 
-d3.json("data/treemap/barack_obama_2008.json", function(root) {
+d3.json("data/treemap/barack_obama_2008.0.json", function(root) {
   initialize(root);
   accumulate(root);
   layout(root);
@@ -172,8 +172,20 @@ d3.json("data/treemap/barack_obama_2008.json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
-        .attr("font-size", function(d) {return Math.min(1, (1.5 * d.donations / d.max_donations)).toString() + "em";})
-        .text(function(d) { if (d.donations / d.max_donations > 0.05) {return d.name;} else {return "";} })
+        .attr("font-size", function(d) {return Math.min(1.4, (6 * d.value / d.group_sum)).toString() + "em";})
+        .text(function(d) {
+          if (d.value / d.group_sum > 0.05) {
+            if (d.value / d.group_sum > 0.1) {
+              return d.name
+            } else {
+              if (d.name.length > 12) {
+                return d.name.slice(0,12) + '...';
+              } else {
+                return d.name;
+              }
+            }
+          } else {
+            return "";} })
         .call(text);
 
     function transitionCandidate(d) {
@@ -245,6 +257,10 @@ d3.select('#opts')
     console.log(newData);
     d3.json(newData, function(root) {
       d3.select("#candidate-chart").selectAll("*").remove();
+      colorDomain = [1, 500, 10000, 100000000];
+      color = d3.scale.linear()
+        .domain(colorDomain)
+        .range(colorRange);
       var candidateTreemap = d3.layout.treemap()
           .children(function(d, depth) { return depth ? null : d._children; })
           .sort(function(a, b) { return a.value - b.value; })
@@ -316,8 +332,20 @@ d3.select('#opts')
 
         g.append("text")
             .attr("dy", ".75em")
-            .attr("size", ".75em")
-            .text(function(d) { if (d.donations / d.max_donations > 0.05) {return d.name;} else {return "";} })
+            .attr("font-size", function(d) {return Math.min(1.4, (6 * d.value / d.group_sum)).toString() + "em";})
+            .text(function(d) {
+              if (d.value / d.group_sum > 0.05) {
+                if (d.value / d.group_sum > 0.1) {
+                  return d.name
+                } else {
+                  if (d.name.length > 12) {
+                    return d.name.slice(0,12) + '...';
+                  } else {
+                    return d.name;
+                  }
+                }
+              } else {
+                return "";} })
             .call(textNew);
 
         function transitionCandidateNew(d) {
