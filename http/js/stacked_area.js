@@ -5,15 +5,17 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
   var _all = {}
 
   _all.cycles = cycles
-  _all.color_scale = d3.scale.category20()
+  _all.color_scale = d3.scale.category10()
   _all.data = data
-
   _all.selected = []
   _all.unselected = []
 
   _all.unselected = _all.data.slice()
   initial.forEach(function(el) {
     var idx = _all.unselected.map(function(d) { return d.key }).indexOf(el)
+    // Do this to ensure that our color scale is always in the 
+    // same order regardless of what is selected
+    _all.unselected.forEach(function(d) { _all.color_scale(d.key) })
     if (idx >= 0) {
       _all.selected = _all.selected.concat(_all.unselected.splice(idx, 1))
     }
@@ -22,7 +24,7 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
   { // Generate top panel
 
     _top.margin = { top: 30, right: 30, bottom: 30, left: 50 }
-    _top.height = (6 * height / 10) - _top.margin.top - _top.margin.bottom
+    _top.height = height / 2 - _top.margin.top - _top.margin.bottom
     _top.width = width - _top.margin.left - _top.margin.right
 
     _top.fig = viz 
@@ -94,7 +96,7 @@ function draw_stacked_area(viz, data, cycles, initial, height, width, options) {
   { // Generate main panel
 
     _bottom.margin = { top: 30, right: 30, bottom: 90, left: 50 }
-    _bottom.height = (4 * height / 10) - _bottom.margin.top - _bottom.margin.bottom
+    _bottom.height = height / 2 - _bottom.margin.top - _bottom.margin.bottom
     _bottom.width = width - _bottom.margin.left - _bottom.margin.right
 
     _bottom.fig = viz

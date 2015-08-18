@@ -4,6 +4,7 @@
     <link rel="stylesheet" style="text/css" href="css/d3.slider.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
     <link rel="stylesheet" style="text/css" href="css/style.css" />
     <link rel="stylesheet" style="text/css" href="css/treemapStyle.css" />
   </head>
@@ -23,7 +24,9 @@
       <div class="row">
         <div class="col-md-12">
           <p>With the coming 2016 election, it is important for us to be aware of what could be
-          driving our future president's decisions.  One major motivator in politics is money.</p>
+          driving our future president's decisions.  One major motivator in politics is money. <b>To avoid corruption of our officials, special limits on contributions exist 
+            to ensure that a single person or entity does not contribute a majority of a candidate's 
+            funds.</b></p>
         </div>
       </div>
       <div class="row">
@@ -34,9 +37,6 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p><b>To avoid corruption of our officials, special limits on contributions are put in place 
-            to ensure that a single person or entity does not contribute a majority of a candidate's 
-            funds.</b></p>
           <p>Since the turn of the 20th century, two landmark events have forcefully
           changed the United States's campaign financing landscape.  The <em>2000 Presidential 
             Election</em> showed that it was possible to raise large amounts of funds without the 
@@ -66,7 +66,6 @@
             <li><b>Individuals</b> (e.g. you)</li>
             <li>The <b>Federal Election Committee</b> (FEC), if the candidate stays under specific spending limits</li>
           </ol>
-          <p>Individuals can only directly donate a maximum of <b>$2,600</b> to a candidate.</p>
           <hr>
           <h3>Instructions</h3>
           <p>To the right, we can see where donors are sending their money during each presidential cycle and how it changes over time.</p>
@@ -78,7 +77,7 @@
           section marked on the graph.</p>
         </div>
         <div class="col-md-6">
-          <h3>Donor Destinations from 1992-2012</h3>
+          <h3>Campaign Funding Sources from 1992-2012</h3>
           <div id="per_type"></div>
         </div>
       </div>
@@ -118,8 +117,7 @@
         <div class="col-md-12">
           <h2>Citizens United v. Federal Election Committee</h2>
           <p>With candidates having to raise more money to keep from being left behind, candidates 
-          looked to PACs to augment their warchests.  In the 2008 election, candidates used loophole, 
-          using independent expenditure PACs, to bypass contribution limits and quickly raise campaign funds.
+          looked to PACs to augment their warchests.  In the 2008 election, candidates used independent expenditure PACs to bypass contribution limits and quickly raise campaign funds.
           </p>
           <p>In 2010, the Supreme Court supported this practice by ruling that the prohibition 
           of all independent expenditures violated the First Amendment.  <b>As long as PACs do not 
@@ -143,18 +141,18 @@
       <div class="row">
         <div class="col-md-12">
           <p>While online donating has made it easier than ever for candidates to reach the masses,
-          it is more efficient to land the proverbial big fish. To bypass contribution limits, candidates 
-          are looking increasingly to PACs.</p>
+          it is more efficient to land the proverbial big fish. To bypass contribution limits, wealthy
+          donors and candidates are looking increasingly to PACs.</p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p>While the number of contributions &lt;$500 has increased significantly, these
+          <p>While the number of contributions less than $1000 has increased significantly, these
           contributions are making up less and less of the overall fundraising landscape.
           </p>
-          <p>On the other hand, contributions over $2600 (over the individual contribution limit)
-          has increased from 37% to 50% of all contributions.
-          </p>
+          <p><b>Contributions under $1000 have dropped dramatically since 1992,
+            from contributing 57% of all campaign donations to 27% in just 10 years.
+          </b></p>
         </div>
         <div class="col-md-6">
           <h3>Percentage Total Contribution by Donation Amount</h3>
@@ -167,9 +165,19 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p>The issue at hand is simply that PACs <em>have no limit to individual contributions and spending</em>.  As a result, wealthy individuals are using PACs to circumvent contribution limits that were put in place to prevent corruption.</p>
+          <ul>
+            <li class="small"><b>Note:</b> The individual contribution limit is $2,600</li>
+            <li class="small"><b>Note:</b> The spike in contributions over $2,600 in 2000 is due to Forbes 
+            self-financing his campaign.  There are no limits to donating to one's self.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p>The issue at hand is simply that PACs <em>have no limit to individual contributions and spending</em>.  </p>
+          <p><b>Wealthy individuals are using PACs to circumvent contribution limits that were put in place to prevent corruption.</b></p>
           <p>The graph below shows contribution amounts to PACs.  We see a dramatic increase 
-          in contributions to PACs &gt;$2600 from 2008 onwards.</p>
+          in contributions to PACs greater than $2600 after the 2010 ruling.</p>
         </div>
       </div>
       <div class="row">
@@ -191,65 +199,43 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <p>See who is supporting your favorite candidates. The size of the blocks represent the dollars donated and the collor indicates the number of donations. A block with fewer donations will appear red and a block with more donations will appear green.
+          <p>See who is supporting your favorite candidates. The size of the blocks represent the dollars donated and the color indicates the number of donations. A block with fewer donations will appear red and a block with more donations will appear green.
           </p>
           <br>
           <select id="opts">
-            <option value="al_gore_1992.json">al_gore_1992</option>
-            <option value="al_gore_1996.json">al_gore_1996</option>
             <option value="al_gore_2000.json">al_gore_2000</option>
-            <option value="al_gore_2004.json">al_gore_2004</option>
-            <option value="al_gore_2008.json">al_gore_2008</option>
-            <option value="barack_obama_2000.json">barack_obama_2000</option>
-            <option value="barack_obama_2004.json">barack_obama_2004</option>
             <option value="barack_obama_2008.json" selected="selected">barack_obama_2008</option>
             <option value="barack_obama_2012.json">barack_obama_2012</option>
-            <option value="bernie_sanders_1992.json">bernie_sanders_1992</option>
-            <option value="bernie_sanders_1996.json">bernie_sanders_1996</option>
-            <option value="bernie_sanders_2000.json">bernie_sanders_2000</option>
-            <option value="bernie_sanders_2004.json">bernie_sanders_2004</option>
-            <option value="bernie_sanders_2008.json">bernie_sanders_2008</option>
             <option value="bernie_sanders_2012.json">bernie_sanders_2012</option>
-            <option value="bernie_sanders_2016.json">bernie_sanders_2016</option>
-            <option value="bill_bradley_1992.json">bill_bradley_1992</option>
-            <option value="bill_bradley_2000.json">bill_bradley_2000</option>
-            <option value="bill_bradley_2004.json">bill_bradley_2004</option>
             <option value="bill_clinton_1992.json">bill_clinton_1992</option>
             <option value="bill_clinton_1996.json">bill_clinton_1996</option>
-            <option value="carly_fiorina_2012.json">carly_fiorina_2012</option>
-            <option value="carly_fiorina_2016.json">carly_fiorina_2016</option>
+            <option value="bob_dole_1992.json">bob_dole_1992</option>
+            <option value="bob_dole_1996.json">bob_dole_1996</option>
+            <option value="duncan_hunter_2008.json">duncan_hunter_2008</option>
+            <option value="elizabeth_dole_2000.json">elizabeth_dole_2000</option>
+            <option value="elizabeth_dole_2004.json">elizabeth_dole_2004</option>
+            <option value="elizabeth_dole_2008.json">elizabeth_dole_2008</option>
             <option value="george_bush_1992.json">george_bush_1992</option>
-            <option value="george_bush_1996.json">george_bush_1996</option>
             <option value="george_w_bush_2000.json">george_w_bush_2000</option>
             <option value="george_w_bush_2004.json">george_w_bush_2004</option>
             <option value="herman_cain_2004.json">herman_cain_2004</option>
-            <option value="herman_cain_2008.json">herman_cain_2008</option>
             <option value="herman_cain_2012.json">herman_cain_2012</option>
-            <option value="herman_cain_2016.json">herman_cain_2016</option>
-            <option value="hillary_clinton_2004.json">hillary_clinton_2004</option>
             <option value="hillary_clinton_2008.json">hillary_clinton_2008</option>
-            <option value="hillary_clinton_2012.json">hillary_clinton_2012</option>
-            <option value="jesse_jackson_1992.json">jesse_jackson_1992</option>
-            <option value="jesse_jackson_1996.json">jesse_jackson_1996</option>
-            <option value="jesse_jackson_2000.json">jesse_jackson_2000</option>
+            <option value="howard_dean_2004.json">howard_dean_2004</option>
             <option value="john_edwards_2000.json">john_edwards_2000</option>
             <option value="john_edwards_2004.json">john_edwards_2004</option>
             <option value="john_edwards_2008.json">john_edwards_2008</option>
-            <option value="john_edwards_2012.json">john_edwards_2012</option>
-            <option value="john_kerry_1992.json">john_kerry_1992</option>
             <option value="john_kerry_1996.json">john_kerry_1996</option>
             <option value="john_kerry_2000.json">john_kerry_2000</option>
             <option value="john_kerry_2004.json">john_kerry_2004</option>
             <option value="john_kerry_2008.json">john_kerry_2008</option>
-            <option value="john_kerry_2012.json">john_kerry_2012</option>
-            <option value="john_mccain_1992.json">john_mccain_1992</option>
-            <option value="john_mccain_1996.json">john_mccain_1996</option>
             <option value="john_mccain_2000.json">john_mccain_2000</option>
             <option value="john_mccain_2004.json">john_mccain_2004</option>
             <option value="john_mccain_2008.json">john_mccain_2008</option>
-            <option value="john_mccain_2012.json">john_mccain_2012</option>
-            <option value="john_mccain_2016.json">john_mccain_2016</option>
-            <option value="joseph_r_biden_jr_1992.json">joseph_r_biden_jr_1992</option>
+            <option value="john_r_kasich_1992.json">john_r_kasich_1992</option>
+            <option value="john_r_kasich_1996.json">john_r_kasich_1996</option>
+            <option value="john_r_kasich_2000.json">john_r_kasich_2000</option>
+            <option value="jon_huntsman_2012.json">jon_huntsman_2012</option>
             <option value="joseph_r_biden_jr_1996.json">joseph_r_biden_jr_1996</option>
             <option value="joseph_r_biden_jr_2000.json">joseph_r_biden_jr_2000</option>
             <option value="joseph_r_biden_jr_2004.json">joseph_r_biden_jr_2004</option>
@@ -259,49 +245,36 @@
             <option value="lindsey_graham_2004.json">lindsey_graham_2004</option>
             <option value="lindsey_graham_2008.json">lindsey_graham_2008</option>
             <option value="lindsey_graham_2012.json">lindsey_graham_2012</option>
-            <option value="lindsey_graham_2016.json">lindsey_graham_2016</option>
-            <option value="marco_rubio_2016.json">marco_rubio_2016</option>
             <option value="mike_huckabee_1992.json">mike_huckabee_1992</option>
             <option value="mike_huckabee_1996.json">mike_huckabee_1996</option>
-            <option value="mike_huckabee_2000.json">mike_huckabee_2000</option>
             <option value="mike_huckabee_2008.json">mike_huckabee_2008</option>
-            <option value="mitt_romney_1996.json">mitt_romney_1996</option>
             <option value="mitt_romney_2008.json">mitt_romney_2008</option>
             <option value="mitt_romney_2012.json">mitt_romney_2012</option>
-            <option value="mitt_romney_2016.json">mitt_romney_2016</option>
             <option value="newt_gingrich_1992.json">newt_gingrich_1992</option>
             <option value="newt_gingrich_1996.json">newt_gingrich_1996</option>
-            <option value="newt_gingrich_2000.json">newt_gingrich_2000</option>
             <option value="newt_gingrich_2012.json">newt_gingrich_2012</option>
-            <option value="ralph_nader_1996.json">ralph_nader_1996</option>
             <option value="ralph_nader_2000.json">ralph_nader_2000</option>
             <option value="ralph_nader_2004.json">ralph_nader_2004</option>
-            <option value="ralph_nader_2008.json">ralph_nader_2008</option>
-            <option value="rand_paul_2012.json">rand_paul_2012</option>
-            <option value="rand_paul_2016.json">rand_paul_2016</option>
             <option value="rick_perry_2012.json">rick_perry_2012</option>
+            <option value="rick_santorum_1996.json">rick_santorum_1996</option>
             <option value="rick_santorum_2000.json">rick_santorum_2000</option>
             <option value="rick_santorum_2004.json">rick_santorum_2004</option>
-            <option value="rick_santorum_2008.json">rick_santorum_2008</option>
             <option value="rick_santorum_2012.json">rick_santorum_2012</option>
             <option value="ron_paul_1996.json">ron_paul_1996</option>
             <option value="ron_paul_2000.json">ron_paul_2000</option>
-            <option value="ron_paul_2004.json">ron_paul_2004</option>
             <option value="ron_paul_2008.json">ron_paul_2008</option>
             <option value="ron_paul_2012.json">ron_paul_2012</option>
             <option value="ross_perot_1992.json">ross_perot_1992</option>
-            <option value="ross_perot_1996.json">ross_perot_1996</option>
-            <option value="ross_perot_2000.json">ross_perot_2000</option>
             <option value="rudolph_w_giuliani_2000.json">rudolph_w_giuliani_2000</option>
-            <option value="rudolph_w_giuliani_2004.json">rudolph_w_giuliani_2004</option>
             <option value="rudolph_w_giuliani_2008.json">rudolph_w_giuliani_2008</option>
-            <option value="rudolph_w_giuliani_2012.json">rudolph_w_giuliani_2012</option>
+            <option value="steve_forbes_1996.json">steve_forbes_1996</option>
+            <option value="steve_forbes_2000.json">steve_forbes_2000</option>
             <option value="ted_cruz_2016.json">ted_cruz_2016</option>
 
           </select>  
         </div>
       </div>
-
+      <br>
       <div class="row">
         <div class="col-md-12">
           <div id="candidate-contribution-treemap">
@@ -324,14 +297,13 @@
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-    <script src="js/d3.slider.js"></script>
+    <script src="js/d3.tip.js"></script>
     <script src="js/mappings.js"></script>
     <script src="js/stacked_area.js"></script>
     <script src="js/area.js"></script>
     <script src="js/bar.js"></script>
     <script src="js/cont_total.js"></script>
     <script src="js/cont_per_type.js"></script>
-    <script src="js/pac_spending_sector.js"></script>
     <script src="js/cont_pacs_out.js"></script>
     <script src="js/cont_per_cand.js"></script>
     <script src="js/cont_per_amount.js"></script>

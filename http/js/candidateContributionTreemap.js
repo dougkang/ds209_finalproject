@@ -2,8 +2,8 @@ var margin = {top: 30, right: 0, bottom: 20, left: 0},
     width = 840,
     height = 500 - margin.top - margin.bottom,
     formatNumber = d3.format(",#"),
-    colorDomain = [1, 5000, 50000],
-    colorRange = ["#FF7878", 'white', "#77DD77"],
+    colorDomain = [1, 5000, 50000, 100000000],
+    colorRange = ["#FF7878", 'white', "#77DD77", "#77DD77"],
     transitioning;
 
 // sets x and y scale to determine size of visible boxes
@@ -172,8 +172,20 @@ d3.json("data/treemap/barack_obama_2008.json", function(root) {
 
     g.append("text")
         .attr("dy", ".75em")
-        .attr("size", ".75em")
-        .text(function(d) { return d.name; })
+        .attr("font-size", function(d) {return Math.min(1.4, (6 * d.value / d.max_sum)).toString() + "em";})
+        .text(function(d) {
+          if (d.value / d.max_sum > 0.05) {
+            if (d.value / d.group_sum > 0.08) {
+              return d.name
+            } else {
+              if (d.name.length > 12) {
+                return d.name.slice(0,12) + '...';
+              } else {
+                return d.name;
+              }
+            }
+          } else {
+            return "";} })
         .call(text);
 
     function transitionCandidate(d) {
@@ -224,7 +236,7 @@ d3.json("data/treemap/barack_obama_2008.json", function(root) {
         .attr("y", function(d) { return y(d.y); })
         .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
         .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-        .attr("fill", function(d){return color(parseFloat(d.donations));});
+        .attr("fill", function(d){return color(parseFloat(d.donations) / 2.5);});
   }
 
   function name(d) {
@@ -244,6 +256,38 @@ d3.select('#opts')
     var newData = "data/treemap/" + d3.select(this).property('value').toString();
     console.log(newData);
     d3.json(newData, function(root) {
+      d3.select("#candidate-chart").selectAll("*").remove();
+      colorDomain = [1, 500, 10000, 100000000];
+      color = d3.scale.linear()
+        .domain(colorDomain)
+        .range(colorRange);
+      var candidateTreemap = d3.layout.treemap()
+          .children(function(d, depth) { return depth ? null : d._children; })
+          .sort(function(a, b) { return a.value - b.value; })
+          .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
+          .round(false);
+
+      var svgCandidate = d3.select("#candidate-chart").append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.bottom + margin.top)
+          .style("margin-left", -margin.left + "px")
+          .style("margin.right", -margin.right + "px")
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+          .style("shape-rendering", "crispEdges");
+
+      var candidateGrandparent = svgCandidate.append("g")
+          .attr("class", "candidateGrandparent");
+
+      candidateGrandparent.append("rect")
+          .attr("y", -margin.top)
+          .attr("width", width)
+          .attr("height", margin.top);
+
+      candidateGrandparent.append("text")
+          .attr("x", 6)
+          .attr("y", 6 - margin.top)
+          .attr("dy", ".75em");
       initialize(root);
       accumulate(root);
       layout(root);
@@ -256,7 +300,7 @@ d3.select('#opts')
           .select("text")
             .text(nameNew(d))
 
-        // color header based on candidateGrandparent's donations
+          // color header based on candidateGrandparent's donations
         candidateGrandparent
           .datum(d.parent)
           .select("rect")
@@ -288,8 +332,20 @@ d3.select('#opts')
 
         g.append("text")
             .attr("dy", ".75em")
-            .attr("size", ".75em")
-            .text(function(d) { return d.name; })
+            .attr("font-size", function(d) {return Math.min(1.4, (6 * d.value / d.group_sum)).toString() + "em";})
+            .text(function(d) {
+              if (d.value / d.group_sum > 0.05) {
+                if (d.value / d.group_sum > 0.1) {
+                  return d.name
+                } else {
+                  if (d.name.length > 12) {
+                    return d.name.slice(0,12) + '...';
+                  } else {
+                    return d.name;
+                  }
+                }
+              } else {
+                return "";} })
             .call(textNew);
 
         function transitionCandidateNew(d) {
@@ -340,7 +396,7 @@ d3.select('#opts')
             .attr("y", function(d) { return y(d.y); })
             .attr("width", function(d) { return x(d.x + d.dx) - x(d.x); })
             .attr("height", function(d) { return y(d.y + d.dy) - y(d.y); })
-            .attr("fill", function(d){return color(parseFloat(d.donations));});
+            .attr("fill", function(d){return color(parseFloat(d.donations) / 2.5);});
       }
 
       function nameNew(d) {

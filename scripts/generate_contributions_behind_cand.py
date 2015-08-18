@@ -19,6 +19,7 @@ p = p.loc[((p["Cycle"] == 1992) | (p["Cycle"] == 1996) | (p["Cycle"] == 2000) | 
 p.columns = [ "Cycle", "EntityId", "Name", "Party", "RecipCode", "PrimCode" ]
 
 a = pd.read_csv("data/pacs.csv", error_bad_lines=False)
+a = a.loc[((a["Type"] != '24A') & (a["Type"] != '24N')), [ "Cycle", "PACID", "CID", "RealCode", "Amount" ]]
 a = a.loc[((a["Cycle"] == 1992) | (a["Cycle"] == 1996) | (a["Cycle"] == 2000) | (a["Cycle"] == 2004) | (a["Cycle"] == 2008) | (a["Cycle"] == 2012) | (a["Cycle"] == 2016)), [ "Cycle", "PACID", "CID", "RealCode", "Amount" ]]
 a.columns = [ "Cycle", "PACID", "EntityId", "RealCode", "Amount"]
 a["Type"] = "PACs"
@@ -29,7 +30,7 @@ ent = pd.concat([c, p]).drop_duplicates(["EntityId"])
 
 ic = ic.loc[ic.RecipID.isin(np.unique(c["EntityId"])),:]
 # ic.to_csv("ic.csv")
-# ic = ic.read_csv('ic.csv')
+# ic = pd.read_csv('ic.csv')
 
 ic = ic.merge(ent, left_on = [ 'RecipID' ], right_on = [ 'EntityId' ], how = 'inner')
 a = a.merge(ent, left_on = [ 'EntityId' ], right_on = [ 'EntityId' ], how = 'inner')
@@ -50,20 +51,36 @@ out_results = out_results.fillna(0.0)
 for year in np.unique(out_results['Cycle']):
     for cand in np.unique(out_results.loc[out_results['Cycle'] == year, 'Name']):
         temp_results = out_results[(out_results['Cycle'] == year) & (out_results['Name'] == cand)]
+        max_donations = str(temp_results['Amount']['count'].max())
+        max_sum = str(temp_results['Amount']['sum'].max())
+        number_donations = str(temp_results['Amount']['count'].sum())
+        indiv_donations = str(temp_results.loc[temp_results['Type'] == 'Individual']['Amount']['count'].sum())
+        indiv_sum = str(temp_results.loc[temp_results['Type'] == 'Individual']['Amount']['sum'].sum())
+        pac_donations = str(temp_results.loc[temp_results['Type'] == 'PACs']['Amount']['count'].sum())
+        pac_sum = str(temp_results.loc[temp_results['Type'] == 'PACs']['Amount']['sum'].sum())
         temp_output = { 'name': cand,
-                        'max_donations': temp_results['Amount']['count'].max(),
-                        'min_donations': temp_results['Amount']['count'].min(),
-                        'donations': temp_results['Amount']['count'].sum(),
+                        'max_donations': max_donations,
+                        'max_sum': max_sum,
+                        'donations': number_donations,
+                        'group_donations': number_donations,
                         'children': [
                             {
                                 'name': 'Individual',
-                                'donations': temp_results[temp_results['Type'] == 'Individual']['Amount']['count'].sum(),
+                                'max_donations': max_donations,
+                                'max_sum': max_sum,
+                                'donations': indiv_donations,
+                                'group_donations': indiv_donations,
+                                'group_sum': indiv_sum,
                                 'children': [
                                     ]
                             },
                             {
                                 'name': 'PACs',
-                                'donations': temp_results[temp_results['Type'] == 'PACs']['Amount']['count'].sum(),
+                                'max_donations': max_donations,
+                                'max_sum': max_sum,
+                                'donations': pac_donations,
+                                'group_donations': pac_donations,
+                                'group_sum': pac_sum,
                                 'children': [
                                     ]
                             }
@@ -73,7 +90,11 @@ for year in np.unique(out_results['Cycle']):
             don = {
                 'name': row['Catname'].values[0],
                 'value': row['Amount']['sum'],
+                'max_donations': max_donations,
+                'max_sum': max_sum,
                 'donations': row['Amount']['count'],
+                'group_donations': indiv_donations,
+                'group_sum': indiv_sum,
                 'rate': row['Amount']['<lambda>']
             }
             temp_output['children'][0]['children'].append(don)
@@ -81,11 +102,14 @@ for year in np.unique(out_results['Cycle']):
             don = {
                 'name': row['Catname'].values[0],
                 'value': row['Amount']['sum'],
+                'max_donations': max_donations,
+                'max_sum': max_sum,
                 'donations': row['Amount']['count'],
+                'group_donations': pac_donations,
+                'group_sum': pac_sum,
                 'rate': row['Amount']['<lambda>']
             }
             temp_output['children'][1]['children'].append(don)
-            
-        filename = cand.lower().split('(')[0].rstrip().replace(' ', '_') + '_' + str(year() + '.json'
-        with open('data/treemap/' + filename, 'w') as outfile:
+        filename = cand.lower().split('(')[0].rstrip().replace(' ', '_') + '_' + str(year) + '.json'
+        with open('./data/treemap/' + filename, 'w') as outfile:
             json.dump(temp_output, outfile)

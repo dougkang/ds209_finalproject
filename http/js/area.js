@@ -3,8 +3,13 @@ function draw_area(viz, data, cycles, height, width, options) {
   var _main = {}
   var _all = {}
 
+  _main.tip = d3.tip()
+    .attr('class', 'd3-tip n')
+    .offset([-10, 0])
+    .html(function(d) { return "$" + d3.format(".2f")(d.values) + 'B' })
+
   _all.cycles = cycles
-  _all.color_scale = d3.scale.category20()
+  _all.color_scale = d3.scale.category10()
   _all.data = data
 
   _main.margin = { top: 30, right: 30, bottom: 30, left: 50 }
@@ -64,6 +69,8 @@ function draw_area(viz, data, cycles, height, width, options) {
       .attr("dy", "1em")
       .style("text-anchor", "middle")
 
+  _main.fig.call(_main.tip)
+
   update_main()
 
   function update_main() {
@@ -87,6 +94,19 @@ function draw_area(viz, data, cycles, height, width, options) {
         .transition()
         .duration(750)
         .attr("d",  _main.area)
+
+    _main.fig
+      .append("g")
+        .attr("class", "points")
+        .selectAll("rect")
+          .data(_all.data).enter()
+          .append('circle')
+            .attr("class", "point")
+            .attr("cx", function(d) { return _main.x_scale(d3.format("02")(d.key % 100)) })
+            .attr("cy", function(d) { return 25 + _main.y_scale(d.values) })
+            .attr("r", 30)
+            .on('mouseover', _main.tip.show)
+            .on('mouseout', _main.tip.hide)
 
     var markers = _main.fig
       .append('g')
